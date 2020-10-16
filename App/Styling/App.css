@@ -1,9 +1,12 @@
-/* .app {
-  font-family: 'Piazzolla', serif;
-  font-size: x-large;
-} */
+.app {
+  /* The image used */
+  background-image: url(../../public/bg.jpg);
 
-/* div {
-  font-family: 'Piazzolla', serif;
-  font-size: x-large;
-} */
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

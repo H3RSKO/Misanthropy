@@ -5,6 +5,7 @@ import Index from "./Index";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from './Styling/App'
 import CssBaseline from '@material-ui/core/CssBaseline';
+import './Styling/App.css'
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

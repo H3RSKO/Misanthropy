@@ -35,6 +35,7 @@
     "@babel/preset-react": "^7.10.4",
     "css-loader": "^5.0.0",
     "file-loader": "^6.1.1",
+    "image-webpack-loader": "^7.0.1",
     "style-loader": "^2.0.0"
   },
   "presets": [
