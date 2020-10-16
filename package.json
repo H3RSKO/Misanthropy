@@ -19,6 +19,7 @@
   "author": "yosef herskovitz",
   "license": "ISC",
   "dependencies": {
+    "@beyonk/google-fonts-webpack-plugin": "^1.5.0",
     "@material-ui/core": "^4.11.0",
     "babel-loader": "^8.1.0",
     "express": "^4.17.1",
@@ -32,7 +33,9 @@
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
-    "css-loader": "^5.0.0"
+    "css-loader": "^5.0.0",
+    "file-loader": "^6.1.1",
+    "style-loader": "^2.0.0"
   },
   "presets": [
     "@babel/preset-react"

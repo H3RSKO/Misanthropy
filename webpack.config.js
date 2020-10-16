@@ -1,12 +1,13 @@
-const path = require('path');
+const path = require("path");
+const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin");
 
 module.exports = {
-  entry: './App/App.js',
-  mode: 'development',
-  devtool: 'inline-source-map',
+  entry: "./App/App.js",
+  mode: "development",
+  devtool: "inline-source-map",
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "public"),
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -14,22 +15,41 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: [
-                "@babel/preset-env",
-                "@babel/preset-react"
-            ]
-         },
-       }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
       {
-          test: /\.css$/i,
-          use: 'css-loader',
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'wpfonts/'
+            }
+          }
+        ]
       }
-    ]
+    ],
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ["*", ".js"],
   },
+  plugins: [
+    new GoogleFontsPlugin({
+      fonts: [
+        {
+          family: "Piazzolla",
+          variants: ["400", "500", "500italic", "600bold", "700italic"],
+        }
+      ],
+    }),
+  ],
 };
