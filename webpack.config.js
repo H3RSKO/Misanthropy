@@ -45,6 +45,8 @@ module.exports = {
             loader: 'image-webpack-loader',
             options: {
               disable: true, // webpack@2.x and newer
+              name: '[name].[ext]',
+              outputPath: 'images/'
             },
           },
         ]
