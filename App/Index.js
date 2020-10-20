@@ -16,12 +16,8 @@ const Index = (props) => {
       </Grid>
       <Router>
       <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route path="/stories">
-            <Stories />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route path="/stories" component={Stories} />
       </Switch>
       </Router>
     </Grid>

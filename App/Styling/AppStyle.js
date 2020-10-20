@@ -1,11 +1,11 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import '../../public/fonts.css'
 import button11 from '../../public/images/button11.png'
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   typography: {
     fontFamily: "Piazzolla",
-    fontSize: 19,
+    // fontSize: 19,
     button: {
       backgroundImage: 'url(' + button11 + ')',
       'background-repeat': 'no-repeat',
@@ -24,5 +24,6 @@ const theme = createMuiTheme({
     },
   },
 });
+theme = responsiveFontSizes(theme);
 
 export default theme
