@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import homeStyle from '../Styling/HomeStyle'
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
-import { borders } from '@material-ui/system';
+
 
 const Home = (props) => {
   const { classes } = props;

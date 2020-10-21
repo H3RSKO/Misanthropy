@@ -1,5 +1,8 @@
 
 const storiesStyle = {
+  borderBox: {
+    borderColor: '#4D8FAC',
+  },
   root: {
     'background-color': 'rgba(0,50,46,0.85)',
     color: 'white',
