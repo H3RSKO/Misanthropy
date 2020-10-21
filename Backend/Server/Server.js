@@ -4,17 +4,23 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const history = require('connect-history-api-fallback')
+const db = require('../Database')
 
-const server = () => {
+
+const createApp = () => {
   app.use(express.static('public'))
-  // app.use('/public', express.static(path.join(__dirname, "public")));
   app.use(bodyParser.json());
-
-  app.listen(8080, () => console.log('Mysanthropy listening on Port 8080'));
-
 }
+
+const startServer = () => {
+  app.listen(8080, () => console.log('Mysanthropy listening on Port 8080'));
+}
+
 // used to block backend routing
 app.use(history());
+
+// sync db
+const syncDb = () => db.sync()
 
 app.get('/', async (req, res, next) => {
   try {
@@ -28,4 +34,10 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal server error.')
 })
 
-server()
+const bootApp = async () => {
+  await syncDb()
+  await createApp()
+  await startServer()
+}
+
+bootApp()
