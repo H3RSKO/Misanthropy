@@ -6,6 +6,7 @@ import indexStyles from "./Styling/IndexStyle";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Home from './Pages/Home'
 import Stories from './Pages/Stories'
+import ProfilePage from './Pages/ProfilePage'
 
 const Index = (props) => {
   const { classes } = props;
@@ -18,6 +19,7 @@ const Index = (props) => {
       <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/stories" component={Stories} />
+          <Route path="/profile" component={ProfilePage} />
       </Switch>
       </Router>
     </Grid>
