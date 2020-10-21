@@ -1,5 +1,5 @@
 const db = require('./db')
-const {User} = require('./models')
+const {User, Post} = require('./models')
 
 const userData = [
   {
@@ -16,6 +16,18 @@ const userData = [
   },
 ]
 
+const postData = [
+  {
+    text: 'Cool new conscept art',
+    photo: 'https://storage.cloud.google.com/misanthropy-post-images/scifi-post.jpg',
+    userId: 1
+  },
+  {
+    text: 'That looks awesome',
+    userId: 2,
+    replyTo: 1
+  }
+]
 
 const seedDB = async () => {
   try {
@@ -26,6 +38,11 @@ const seedDB = async () => {
       userData.map((user) => User.create(user))
     )
     console.log('Added users')
+
+    const createdPosts = Promise.all(
+      postData.map((post) => {Post.create(post)})
+    )
+    console.log('Added posts')
   }
   catch(err) {console.log(err)}
 }
