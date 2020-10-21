@@ -1,20 +1,25 @@
 import React from "react";
-import { Paper, Button, Grid } from "@material-ui/core";
+import { Paper, Button, Grid, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import homeStyle from '../Styling/HomeStyle'
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
+import { borders } from '@material-ui/system';
 
 const Home = (props) => {
   const { classes } = props;
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs={10} >
+        <Box className={classes.borderBox} border={3}>
         <Paper
           elevation={3}
           square={true}
           className={classes.root}
+          // borderColor="primary.main"
+          // border={1}
+          variant="outlined"
         >
           <Typography variant="h3" className={classes.subHeader}>Listen to the stories whispered accross the void.</Typography>
           <Grid container direction="row" justify="center" >
@@ -34,6 +39,7 @@ const Home = (props) => {
             </Grid>
           </Grid>
         </Paper>
+        </Box>
       </Grid>
     </Grid>
   )
