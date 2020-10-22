@@ -19,13 +19,13 @@ const userData = [
 const threadData = [
   {
     title: 'The Awakening',
-    views: 21,
+    views: 2,
     story: true,
     userId: 1
   },
   {
     title: 'How to write short stories',
-    views: 21,
+    views: 1,
     upvotes: 15,
     story: false,
     userId: 2
