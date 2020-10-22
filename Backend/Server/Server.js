@@ -15,9 +15,18 @@ const createApp = () => {
 const startServer = () => {
   app.listen(8080, () => console.log('Mysanthropy listening on Port 8080'));
 }
+// connect to backend APIs
+app.use('/api/', require('./API'))
 
 // used to block backend routing
-app.use(history());
+const historyMiddleware = history({verbose: true})
+app.use((req, res, next) => {
+  if (req.path === '/api') next()
+  else {
+    historyMiddleware(req, res, next)
+  }
+});
+
 
 // sync db
 const syncDb = () => db.sync()

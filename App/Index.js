@@ -15,13 +15,11 @@ const Index = (props) => {
       <Grid item xs={10} justify="center" className={classes.header}>
         <h1>Misanthropy.space</h1>
       </Grid>
-      <Router>
       <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/stories" component={Stories} />
           <Route path="/profile" component={ProfilePage} />
       </Switch>
-      </Router>
     </Grid>
   );
 };
