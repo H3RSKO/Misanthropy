@@ -2,7 +2,7 @@ const path = require("path");
 const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin");
 
 module.exports = {
-  entry: "./App/App.js",
+  entry: ['babel-regenerator-runtime', "./App/App.js"],
   mode: "development",
   devtool: "inline-source-map",
   output: {
