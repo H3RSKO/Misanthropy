@@ -6,13 +6,15 @@ const userData = [
     name: 'yosef',
     email: 'yosef@test.com',
     password: 'passwordHash',
-    photo: 'https://storage.cloud.google.com/misanthropy-profile-images/headshot.jpg'
+    photo: 'https://storage.cloud.google.com/misanthropy-profile-images/headshot.jpg',
+    isAdmin: 'true'
   },
   {
     name: 'yedid',
     email: 'yedid@test.com',
     password: 'passwordHash',
-    photo: ''
+    photo: '',
+    isAdmin: 'false'
   },
 ]
 
