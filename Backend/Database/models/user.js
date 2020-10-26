@@ -19,6 +19,10 @@ const User = db.define('user', {
     // to be updated with crypto
     type: Sequelize.STRING,
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
   // add posts
   // add threads
   // add stories
