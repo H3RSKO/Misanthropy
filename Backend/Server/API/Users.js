@@ -11,3 +11,11 @@ router.get('/', async (req, res, next) => {
     res.json(users)
   } catch(err) {next(err)}
 })
+
+router.post('/', async (req ,res, next) => {
+  try {
+    console.log('request body ', req.body)
+    const user = await User.create(req.body)
+    res.send(user)
+  } catch(err) {next(err)}
+})
