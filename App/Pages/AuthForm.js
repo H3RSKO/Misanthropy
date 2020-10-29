@@ -1,76 +1,159 @@
-import React from "react";
-import { connect } from "react-redux";
-import addNewUser from "../store";
-import {
-  Paper,
-  Button,
-  Grid,
-  Box,
-  FormControl,
-  InputLabel,
-  Input,
-  FormHelperText,
-} from "@material-ui/core";
-import {
-  createMuiTheme,
-  withStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
-import authFormStyles from "../Styling/AuthFormStyles";
-import { addNewUsers } from "../store";
+import React from 'react';
+import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
+// import Button from '@material-ui/core/Button';
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import TextField from '@material-ui/core/TextField';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import Link from '@material-ui/core/Link';
+// import Grid from '@material-ui/core/Grid';
+// import Box from '@material-ui/core/Box';
+// import Typography from '@material-ui/core/Typography';
+// import Container from '@material-ui/core/Container';
+// import {Paper} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import authFormStyles from '../Styling/AuthFormStyles'
 
-const AuthForm = (props) => {
-  const { name, displayName, handleSubmit, classes } = props;
-
-  // const formTheme = createMuiTheme({
-  //   palette: {
-  //     primary: { main: "#f0fffb", contrastText: "#fff" },
-  //     secondary: { main: "#f0fffb", contrastText: "#fff" },
-  //   },
-  // });
-
+function Copyright() {
   return (
-    <Grid container direction="row" justify="center">
-      <Grid item xs={10}>
-        {displayName}
-        <Box className={classes.borderBox} border={3}>
-          <Paper elevation={3} square={true} className={classes.root}>
-            <Box>
-              {/* <ThemeProvider theme={formTheme}> */}
-                <FormControl color="main">
-                  <InputLabel htmlFor="my-input" style={{ color: "white" }} variant="outlined">
-                    Email address
-                  </InputLabel>
-                  <Input aria-describedby="my-helper-text" style={{ color: "white" }}/>
-                  <FormHelperText id="myHelperText" className="formInput" style={{ color: "white" }}>
-                    We'll never share your email.
-                  </FormHelperText>
-                </FormControl>
-              {/* </ThemeProvider> */}
-            </Box>
-          </Paper>
-        </Box>
-      </Grid>
-    </Grid>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
-};
+}
 
-const mapSignup = (state) => {
-  return {
-    name: "signup",
-    displayName: "Sign Up",
-  };
-};
+// const useStyles = makeStyles((theme) => ({
+//   borderBox: {
+//     borderColor: '#4D8FAC',
+//   },
+//   root: {
+//     backgroundColor: 'rgba(0,50,46,0.85)',
+//     color: 'primary',
+//     padding: '2em',
+//     fontSize: 32,
+//   },
+//   paper: {
+//     marginTop: theme.spacing(8),
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//   },
+//   avatar: {
+//     margin: theme.spacing(1),
+//     backgroundColor: theme.palette.secondary.main,
+//   },
+//   form: {
+//     width: '100%', // Fix IE 11 issue.
+//     marginTop: theme.spacing(3),
+//   },
+//   submit: {
+//     margin: theme.spacing(3, 0, 2),
+//   },
+// }));
 
-const mapDispatch = (dispatch) => {
-  return {
-    addUser: () => dispatch(addNewUser()),
-  };
-};
+const SignUp = () => {
+  const classes = authFormStyles();
+  return (
+    <Container component="main" maxWidth="xs">
+    <Box className={classes.borderBox} border={3}>
+      <Paper elevation={3} square={true} className={classes.root}>
+      <CssBaseline />
+      <div className={classes.paper} style={{ color: "78f4dd" }}>
+        <Avatar className={classes.avatar}>
+          no icon
+        </Avatar>
+        <Typography component="h1" variant="h5" color="secondary">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate color="secondary">
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+                textColor='secondary'
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
 
-const mapState = (state) => ({ users: state });
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+                style={{ color: "white" }}
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link href="#" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+      </Paper>
+        </Box>
+    </Container>
+  );
+}
 
-export default connect(
-  mapSignup,
-  mapDispatch
-)(withStyles(authFormStyles)(AuthForm));
+
+export default withStyles(authFormStyles)(SignUp);

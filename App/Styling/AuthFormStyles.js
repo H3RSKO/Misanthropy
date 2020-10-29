@@ -1,5 +1,6 @@
+import { makeStyles } from '@material-ui/core/styles';
 
-const authFormStyles = {
+const authFormStyles = makeStyles((theme) => ({
   borderBox: {
     borderColor: '#4D8FAC',
   },
@@ -9,11 +10,23 @@ const authFormStyles = {
     padding: '2em',
     fontSize: 32,
   },
-  buttons: {
-    'text-align': 'center',
-    'justify-content': "center",
-    'justify-self': "center"
-  }
-}
-
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+})
+)
 export default authFormStyles

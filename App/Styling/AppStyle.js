@@ -43,27 +43,22 @@ const theme = createMuiTheme({
     MuiInputBase: {
       input: {
         color: '#aeffff',
-        borderColor: '#aeffff'
       },
     },
     MuiFormLabel: {
       root: {
         color: '#aeffff',
-        borderColor: '#aeffff'
       },
-    },
-    MuiFormControl: {
-      root: {
-        border: '#aeffff'
-      }
     },
     MuiOutlinedInput: {
+      root: {
+        '&:hover  notchedOutline': {
+          borderColor: '#aeffff',
+        }
+      },
       notchedOutline: {
-        borderColor: '#aeffff'
-      },
-      '&:hover fieldset': {
-        borderColor: '#78f4dd',
-      },
+        borderColor: '#aeffff',
+      }
     }
   }
 });
