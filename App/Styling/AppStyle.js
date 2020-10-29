@@ -25,11 +25,8 @@ const theme = createMuiTheme({
       'background-repeat': 'no-repeat',
       // 'background-attachment': 'fixed',
       'background-position': 'center',
-      'background-size': 'cover'
+      'background-size': 'cover',
     },
-  },
-  input: {
-    color: "red"
   },
   // possibly superfluous 👇
   overrides: {
@@ -38,6 +35,11 @@ const theme = createMuiTheme({
         '@font-face':
           '"Piazzolla"'
       },
+    },
+    MuiButton: {
+      label: {
+        color: '#aeffff'
+      }
     },
     // for typed text in forms
     MuiInputBase: {

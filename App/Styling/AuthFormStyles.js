@@ -11,13 +11,13 @@ const authFormStyles = makeStyles((theme) => ({
     fontSize: 32,
   },
   paper: {
-    marginTop: theme.spacing(8),
+
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -27,6 +27,10 @@ const authFormStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  disclaimer: {
+    fontSize: 15,
+    color: '#aeffff'
+  }
 })
 )
 export default authFormStyles
