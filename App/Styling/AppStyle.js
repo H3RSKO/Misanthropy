@@ -44,7 +44,7 @@ const theme = createMuiTheme({
     // for typed text in forms
     MuiInputBase: {
       input: {
-        color: '#aeffff',
+        color: '#78f4dd',
       },
     },
     MuiFormLabel: {

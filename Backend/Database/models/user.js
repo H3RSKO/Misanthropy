@@ -4,15 +4,16 @@ const {AES} = require("crypto-js");
 const crypto = require('crypto')
 
 const User = db.define('user', {
-  name: {
+  userName: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
+    // allowNull: false,
+    len: [4,25]
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
+    // allowNull: false,
     validate: {
       isEmail: true,
     }
@@ -23,6 +24,7 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('password')
     },
+    len: [5,25]
   },
   salt: {
     type: Sequelize.STRING,

@@ -9,7 +9,8 @@ const db = require('../Database')
 
 const createApp = () => {
   app.use(express.static('public'))
-  app.use(bodyParser.json());
+  app.use(express.json());
+  app.use(express.urlencoded({extended: true}))
 }
 
 const startServer = () => {
