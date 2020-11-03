@@ -2,7 +2,21 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import '../../public/fonts.css'
 import button11 from '../../public/images/button11.png'
 
-let theme = createMuiTheme({
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#00f464',
+      light: '#6aff95',
+      dark: '#00c033',
+      contrastText: '#f0fffb',
+    },
+    secondary: {
+      main: '#78f4dd',
+      light: '#aeffff',
+      dark: '#3fc1ab',
+      contrastText: '#f0fffb',
+    }
+  },
   typography: {
     fontFamily: "Piazzolla",
     // fontSize: 19,
@@ -11,7 +25,7 @@ let theme = createMuiTheme({
       'background-repeat': 'no-repeat',
       // 'background-attachment': 'fixed',
       'background-position': 'center',
-      'background-size': 'cover'
+      'background-size': 'cover',
     },
   },
   // possibly superfluous 👇
@@ -22,8 +36,34 @@ let theme = createMuiTheme({
           '"Piazzolla"'
       },
     },
-  },
+    MuiButton: {
+      label: {
+        color: '#aeffff'
+      }
+    },
+    // for typed text in forms
+    MuiInputBase: {
+      input: {
+        color: '#78f4dd',
+      },
+    },
+    MuiFormLabel: {
+      root: {
+        color: '#aeffff',
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        '&:hover  notchedOutline': {
+          borderColor: '#aeffff',
+        }
+      },
+      notchedOutline: {
+        borderColor: '#aeffff',
+      }
+    }
+  }
 });
-theme = responsiveFontSizes(theme);
+// theme = responsiveFontSizes(theme);
 
 export default theme

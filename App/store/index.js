@@ -1,5 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import ReduxThunk from 'redux-thunk';
+import logger from 'redux-logger'
 
 import users from './user'
 
@@ -7,7 +8,7 @@ import users from './user'
 //   users,
 // })
 
-const store = createStore(users, applyMiddleware(ReduxThunk))
+const store = createStore(users, applyMiddleware(ReduxThunk, logger))
 
 export default store
 export * from './user'

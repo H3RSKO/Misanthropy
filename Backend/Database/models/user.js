@@ -4,10 +4,11 @@ const {AES} = require("crypto-js");
 const crypto = require('crypto')
 
 const User = db.define('user', {
-  name: {
+  userName: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
+    len: [4,25]
   },
   email: {
     type: Sequelize.STRING,
@@ -22,7 +23,7 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     get() {
       return () => this.getDataValue('password')
-    },
+    }
   },
   salt: {
     type: Sequelize.STRING,
@@ -53,13 +54,22 @@ User.prototype.correctPW = (pw) => {
 
 // Class methods
 User.generateSalt = function() {
-  return crypto.randomBytes(256).toString('base64')
+  return crypto.randomBytes(18).toString('base64')
 }
 
 User.encryptPassword = (pw, salt) => {
   AES.encrypt(pw, salt).toString()
 }
 
+const setSaltAndPassword = (user) => {
+  // if (user.changed('password')) {
+    user.salt = User.generateSalt()
+    user.password = User.encryptPassword(user.password(), user.salt())
+  // }
+}
 
+
+User.beforeCreate(setSaltAndPassword)
+User.beforeUpdate(setSaltAndPassword)
 
 module.exports = User

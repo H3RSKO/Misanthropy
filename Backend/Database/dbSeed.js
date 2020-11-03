@@ -3,14 +3,14 @@ const {User, Post, Thread} = require('./models')
 
 const userData = [
   {
-    name: 'yosef',
+    userName: 'yosef',
     email: 'yosef@test.com',
     password: 'passwordHash',
     photo: 'https://storage.cloud.google.com/misanthropy-profile-images/headshot.jpg',
     isAdmin: 'true'
   },
   {
-    name: 'yedid',
+    userName: 'yedid',
     email: 'yedid@test.com',
     password: 'passwordHash',
     photo: '',

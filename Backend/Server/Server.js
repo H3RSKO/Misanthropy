@@ -9,8 +9,11 @@ const db = require('../Database')
 
 const createApp = () => {
   app.use(express.static('public'))
-  app.use(bodyParser.json());
+  app.use(express.urlencoded({extended: true}))
 }
+
+// needs to be listed before the routes are defined
+app.use(bodyParser.json());
 
 const startServer = () => {
   app.listen(8080, () => console.log('Mysanthropy listening on Port 8080'));
