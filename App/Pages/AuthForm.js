@@ -20,9 +20,7 @@ const SignUp = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(user)
-    createUser({name: user.userName, email: user.email, password: user.password})
-    console.log(user)
+    createUser({userName: user.userName, email: user.email, password: user.password})
   }
 
   return (
@@ -50,7 +48,7 @@ const SignUp = (props) => {
                 label="User Name"
                 autoFocus
                 onChange={handleInputChange}
-                value={user.name}
+                value={user.userName}
               />
             </Grid>
             <Grid item xs={12}>
