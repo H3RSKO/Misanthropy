@@ -68,7 +68,7 @@ const setSaltAndPassword = (user) => {
   // }
 }
 
-
+// creates salt and hashes password
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 

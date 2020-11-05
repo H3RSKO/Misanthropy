@@ -21,6 +21,7 @@ const SignUp = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     createUser({userName: user.userName, email: user.email, password: user.password})
+    // create dialog to confirm account creation and open home page
   }
 
   return (

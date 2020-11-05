@@ -27,9 +27,7 @@ export const fetchUsers = () => async (dispatch) => {
 
 export const addNewUser = (newUser) => async (dispatch) => {
   try {
-    console.log('made it to thunkland. User is: ', newUser)
-    const {data} = await axios.post('/api/users', newUser)
-    // console.log('made it to thunkland. User is: ', data)
+    const {data} = await axios.post('/api/users/signup', newUser)
     return dispatch(addUser(data))
   }
   catch(err) {console.log(err)}
