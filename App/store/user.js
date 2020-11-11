@@ -28,7 +28,7 @@ export const fetchUsers = () => async (dispatch) => {
 export const addNewUser = (newUser) => async (dispatch) => {
   try {
     const {data} = await axios.post('/api/users/signup', newUser)
-    return dispatch(addUser(data))
+    return dispatch(addUser({...data, loggedIn: true}))
   }
   catch(err) {console.log(err)}
 }

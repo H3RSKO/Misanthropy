@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import lock from '../../public/icons/lock.svg';
 import authFormStyles from '../Styling/AuthFormStyles';
 import {addNewUser} from '../store'
+import SignedIn from '../Components/SignedIn'
 
 const SignUp = (props) => {
   const {createUser} = props
@@ -102,6 +103,7 @@ const SignUp = (props) => {
       </div>
       </Paper>
         </Box>
+        <SignedIn history={props.history}/>
     </Container>
   );
 }
