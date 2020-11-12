@@ -40,7 +40,7 @@ export default function (state = [], action) {
     case GET_ALL_USERS:
       return action.users
     case ADD_USER:
-      return [...state, action.user]
+      return action.user
     default:
       return state
   }

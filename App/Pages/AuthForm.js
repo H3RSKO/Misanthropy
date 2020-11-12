@@ -5,26 +5,27 @@ import { withStyles } from '@material-ui/core/styles';
 import lock from '../../public/icons/lock.svg';
 import authFormStyles from '../Styling/AuthFormStyles';
 import {addNewUser} from '../store'
-import SignedIn from '../Components/SignedIn'
+import SignedIn from '../Components/SignedIn/SignedIn'
 
 const SignUp = (props) => {
   const {createUser} = props
   const classes = authFormStyles();
 
   const [user, setUser] = useState({userName: '', email: '', password: ''})
+  const [isSignedIn, setIsSignIn] = useState(false)
 
   // Takes form input and saves to state
   const handleInputChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
-    console.log('input change ', user)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    createUser({userName: user.userName, email: user.email, password: user.password})
-    // create dialog to confirm account creation and open home page
+    await createUser({userName: user.userName, email: user.email, password: user.password})
+    // opens dialog to confirm account creation and open home page
+    setIsSignIn(true)
   }
-
+  console.log('>> props: ', props)
   return (
     <Container component="main" maxWidth="xs">
     <Box className={classes.borderBox} border={3}>
@@ -103,18 +104,22 @@ const SignUp = (props) => {
       </div>
       </Paper>
         </Box>
-        <SignedIn history={props.history}/>
+        {isSignedIn ? <SignedIn history={props.history} user={props.user}/> : <></>}
     </Container>
   );
 }
 
+const mapState = (state) => {
+  return {
+    users: state.users,
+  }
+}
 
 const mapDispatchSignUp = (dispatch) => {
-
   return {
     createUser: (newUser) => dispatch(addNewUser(newUser))
   }
 }
 
-export const Signup = connect(null, mapDispatchSignUp)(withStyles(authFormStyles)(SignUp))
-// export default withStyles(authFormStyles)(SignUp);
+export const Signup = connect(mapState, mapDispatchSignUp)(withStyles(authFormStyles)(SignUp))
+
