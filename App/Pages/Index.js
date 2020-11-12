@@ -21,7 +21,7 @@ const Index = (props) => {
           <Route exact path="/" component={Home} />
           <Route path="/stories" component={Stories} />
           <Route path="/profile" component={ProfilePage} />
-          <Route path="/auth" component={Signup} />
+          <Route path="/signup" component={Signup} />
       </Switch>
     </Grid>
   );

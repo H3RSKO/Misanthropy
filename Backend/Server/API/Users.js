@@ -13,11 +13,28 @@ router.get('/', async (req, res, next) => {
   } catch(err) {next(err)}
 })
 
-router.post('/', async (req ,res, next) => {
+router.post('/login', async (req, res, next) => {
   try {
-    console.log(req.body)
+    const user = await User.findOne({
+    where: {
+      userName: req.body.userName
+    }
+    })
+    if (!user) {
+      console.log(`User ${req.body.userName} not found!`)
+      res.status(401).send('Username not found')
+    } else if (!user.correctPW(req.body.password)){
+      console.log('Incorrect password for ', req.body.userName)
+      res.status(401).send('Wrong password')
+    } else {
+      req.login(user, err => (err ? next(err) : res.json(user)))
+    }
+  } catch(err) {next(err)}
+})
+
+router.post('/signup', async (req ,res, next) => {
+  try {
     const user = await User.create(req.body)
-    console.log('request body 2 ', user)
     res.json(user)
   } catch(err) {next(err)}
 })

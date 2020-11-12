@@ -36,9 +36,21 @@ const theme = createMuiTheme({
           '"Piazzolla"'
       },
     },
+    MuiPaper: {
+      root: {
+        backgroundColor: 'rgba(0,50,46,0.85)',
+        color: '#00c033',
+        padding: '2em',
+      }
+    },
     MuiButton: {
+      containedPrimary: {
+        width: '20vw',
+        // borderColor: '#00f464',
+        // borderWidth: '5px'
+      },
       label: {
-        color: '#aeffff'
+        color: '#aeffff',
       }
     },
     // for typed text in forms
@@ -60,6 +72,24 @@ const theme = createMuiTheme({
       },
       notchedOutline: {
         borderColor: '#aeffff',
+      }
+    },
+    MuiDialog: {
+      paperWidthSm: {
+        // width: '70vw',
+        justifySelf: 'center',
+        justifyContent: 'center'
+      },
+      paperScrollPaper: {
+        // justifySelf: 'center',
+        // justifyContent: 'center'
+      }
+    },
+    MuiDialogTitle: {
+      root: {
+        color: '#00c033',
+        // justifySelf: 'center',
+        // justifyContent: 'center'
       }
     }
   }

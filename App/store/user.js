@@ -27,10 +27,8 @@ export const fetchUsers = () => async (dispatch) => {
 
 export const addNewUser = (newUser) => async (dispatch) => {
   try {
-    console.log('made it to thunkland. User is: ', newUser)
-    const {data} = await axios.post('/api/users', newUser)
-    // console.log('made it to thunkland. User is: ', data)
-    return dispatch(addUser(data))
+    const {data} = await axios.post('/api/users/signup', newUser)
+    return dispatch(addUser({...data, loggedIn: true}))
   }
   catch(err) {console.log(err)}
 }
@@ -42,7 +40,7 @@ export default function (state = [], action) {
     case GET_ALL_USERS:
       return action.users
     case ADD_USER:
-      return [...state, action.user]
+      return action.user
     default:
       return state
   }
