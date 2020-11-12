@@ -1,6 +1,6 @@
 <h1 align="center">
 	<br>
-	<img width="1000" alt="GitGud" src="images/misGif.gif">
+	<img width="1000" src="./public/images/misGif.gif">
 	<br>
 	<br>
 </h1>
