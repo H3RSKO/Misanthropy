@@ -78,5 +78,16 @@
 [ ] Create Stories/Thread frontend<br>
 [ ] Create Post frontend<br>
 </div>
+<br>
+<br>
+
+
+<h2> UX Highlights </h2>
+<br>
+<h3> User Signup </h3>
+<h1 align="center">
+	<img width="1000" src="./public/images/signup.gif">
+	<br>
+</h1>
 
 </div>
