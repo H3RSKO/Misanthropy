@@ -37,9 +37,12 @@
 
 #### Misc:
 <div style="color:#aeffff">
-[🛰] Create placeholder for [Misanthropy.space](https://misanthropy.space)
-</div>
+	
+[🛰] Create placeholder for <a href="https://misanthropy.space">Misanthropy.space</a>   
 <br>
+</div>
+
+
 
 #### Backend
 <div style="color:#aeffff">
