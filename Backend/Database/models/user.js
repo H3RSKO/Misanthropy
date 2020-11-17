@@ -57,15 +57,12 @@ User.generateSalt = function() {
 }
 
 User.encryptPassword = (pw, salt) => {
-  // return AES.encrypt(pw, salt).toString()
   return SHA256(pw, salt).toString()
 }
 
 const setSaltAndPassword = (user) => {
-  // if (user.changed('password')) {
     user.salt = User.generateSalt()
     user.password = User.encryptPassword(user.password(), user.salt())
-  // }
 }
 
 // creates salt and hashes password
