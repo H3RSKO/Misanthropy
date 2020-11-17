@@ -109,11 +109,19 @@ const SignUp = (props) => {
   );
 }
 
-const mapState = (state) => {
+const mapSignupState = (state) => {
   return {
+    name: 'signup',
     users: state.users,
   }
 }
+
+const mapLoginState = (state) => {
+  return {
+    name: 'signin'
+  }
+}
+
 
 const mapDispatchSignUp = (dispatch) => {
   return {
@@ -121,5 +129,16 @@ const mapDispatchSignUp = (dispatch) => {
   }
 }
 
-export const Signup = connect(mapState, mapDispatchSignUp)(withStyles(authFormStyles)(SignUp))
+// 1: create thunk to sign in user
+// 1.5: make API route to authenticate user
+// 2: set authform page to display correct by signup vs login
+const mapDispatchSignIn = (dispatch) => {
+  return {
+    signInUser: (user) => dispatch(authenticateUser(user))
+  }
+}
+
+export const Signup = connect(mapSignupState, mapDispatchSignUp)(withStyles(authFormStyles)(SignUp))
+
+export const Login = connect(mapLoginState, mapDispatchSignIn)(withStyles(authFormStyles)(SignUp))
 

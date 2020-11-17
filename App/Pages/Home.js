@@ -37,6 +37,13 @@ const Home = (props) => {
               </Button>
               </Link>
             </Grid>
+            <Grid item xs={6} className={classes.buttons}>
+            <Link to="/signup">
+              <Button variant="contained" color="primary">
+                Signup
+              </Button>
+              </Link>
+            </Grid>
           </Grid>
         </Paper>
         </Box>

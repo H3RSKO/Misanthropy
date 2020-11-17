@@ -20,6 +20,7 @@ router.post('/login', async (req, res, next) => {
       userName: req.body.userName
     }
     })
+    console.log('user >> ', user)
     if (!user) {
       console.log(`User ${req.body.userName} not found!`)
       res.status(401).send('Username not found')
@@ -27,7 +28,7 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for ', req.body.userName)
       res.status(401).send('Wrong password')
     } else {
-      req.login(user, err => (err ? next(err) : res.json(user)))
+      res.json(user).send(`Welcome ${user.userName}`)
     }
   } catch(err) {next(err)}
 })

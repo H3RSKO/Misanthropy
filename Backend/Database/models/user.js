@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {AES} = require("crypto-js");
+const {SHA256} = require("crypto-js");
 const crypto = require('crypto')
 
 const User = db.define('user', {
@@ -19,8 +19,8 @@ const User = db.define('user', {
     }
   },
   password: {
-    // to be updated with crypto
     type: Sequelize.STRING,
+    allowNull: false,
     get() {
       return () => this.getDataValue('password')
     }
@@ -47,10 +47,9 @@ const User = db.define('user', {
 })
 
 // Instance method
-User.prototype.correctPW = (pw) => {
+User.prototype.correctPW = function(pw) {
   return User.encryptPassword(pw, this.salt()) === this.password()
 }
-
 
 // Class methods
 User.generateSalt = function() {
@@ -58,7 +57,8 @@ User.generateSalt = function() {
 }
 
 User.encryptPassword = (pw, salt) => {
-  AES.encrypt(pw, salt).toString()
+  // return AES.encrypt(pw, salt).toString()
+  return SHA256(pw, salt).toString()
 }
 
 const setSaltAndPassword = (user) => {

@@ -7,7 +7,8 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Home from './Home'
 import Stories from './Stories'
 import ProfilePage from './ProfilePage'
-import {Signup} from './AuthForm'
+import {Signup, Login} from './AuthForm'
+
 
 
 const Index = (props) => {
@@ -22,6 +23,7 @@ const Index = (props) => {
           <Route path="/stories" component={Stories} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
       </Switch>
     </Grid>
   );
