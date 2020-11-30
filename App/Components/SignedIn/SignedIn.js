@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 // a popup after succesfu,lly creating account or logging in
 
 const SignedIn = (props) => {
-  const { classes, user } = props;
+  const { classes, user, signup } = props;
   const handleClose = () => {
     // redirect to home page
     props.history.push('/')
@@ -15,7 +15,9 @@ const SignedIn = (props) => {
 
   return (
     <Dialog className={classes.signedIn} onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} variant="outlined">
-      <DialogTitle id="simple-dialog-title">Thanks for signing up {user.userName}!</DialogTitle>
+      <DialogTitle id="simple-dialog-title">
+      {signup?  `Thanks for signing up ${user.userName}!`: `Welcome back ${user.userName}!`}
+      </DialogTitle>
       <Box className={classes.signedInBox} display="flex" justifyContent="center">
       <Button variant="contained" color="primary" onClick={handleClose} justify="center">
         Continue

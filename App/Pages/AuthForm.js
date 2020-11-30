@@ -4,15 +4,15 @@ import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link
 import { withStyles } from '@material-ui/core/styles';
 import lock from '../../public/icons/lock.svg';
 import authFormStyles from '../Styling/AuthFormStyles';
-import {addNewUser} from '../store'
+import {addNewUser, authenticateUser} from '../store'
 import SignedIn from '../Components/SignedIn/SignedIn'
 
-const SignUp = (props) => {
-  const {createUser} = props
+const AuthForm = (props) => {
+  const {createUser, signInUser, signup, error} = props
   const classes = authFormStyles();
 
   const [user, setUser] = useState({userName: '', email: '', password: ''})
-  const [isSignedIn, setIsSignIn] = useState(false)
+  const [isSignedIn, setIsSignedIn] = useState(false)
 
   // Takes form input and saves to state
   const handleInputChange = (event) => {
@@ -21,9 +21,10 @@ const SignUp = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await createUser({userName: user.userName, email: user.email, password: user.password})
+    signup ? await createUser({userName: user.userName, email: user.email, password: user.password}) : await signInUser({userName: user.userName, password: user.password})
+    console.log('user>>> ', user)
     // opens dialog to confirm account creation and open home page
-    setIsSignIn(true)
+    setIsSignedIn(true)
   }
   console.log('>> props: ', props)
   return (
@@ -36,7 +37,7 @@ const SignUp = (props) => {
           <img src={lock} alt='lock-icon' />
         </Avatar>
         <Typography component="h1" variant="h5" color="secondary">
-          Sign up
+          {signup ? <div>Sign Up</div> : <div>Sign In</div>}
         </Typography>
         <form className={classes.form} noValidate color="secondary" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -54,7 +55,7 @@ const SignUp = (props) => {
                 value={user.userName}
               />
             </Grid>
-            <Grid item xs={12}>
+            {signup? <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 fullWidth
@@ -65,7 +66,7 @@ const SignUp = (props) => {
                 onChange={handleInputChange}
                 value={user.email}
               />
-            </Grid>
+            </Grid> : <></>}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -91,34 +92,43 @@ const SignUp = (props) => {
             className={classes.submit}
 
           >
-            Sign Up
+            {signup ? <div>Sign Up</div> : <div>Sign In</div>}
           </Button>
-          <Grid container justify="flex-center">
+          {signup ? <Grid container justify="flex-center">
             <Grid item>
-              <Link href="#" variant="body1">
+              <Link href="/login" variant="body1">
                 Already have an account? Sign in
               </Link>
             </Grid>
-          </Grid>
+          </Grid> : <Grid container justify="flex-center">
+            <Grid item>
+              <Link href="/signup" variant="body1">
+                Need an account? Sign Up!
+              </Link>
+            </Grid>
+          </Grid>}
         </form>
       </div>
       </Paper>
         </Box>
-        {isSignedIn ? <SignedIn history={props.history} user={props.user}/> : <></>}
+        {error && error.response && <div> {error.response.data} </div>}
+        {isSignedIn ? <SignedIn signup={signup} history={props.history} user={props.user}/> : <></>}
     </Container>
   );
 }
 
 const mapSignupState = (state) => {
   return {
-    name: 'signup',
+    signup: true,
     users: state.users,
+    // error: state.users.error,
   }
 }
 
 const mapLoginState = (state) => {
   return {
-    name: 'signin'
+    signup: false,
+    // error: state.user.error,
   }
 }
 
@@ -138,7 +148,7 @@ const mapDispatchSignIn = (dispatch) => {
   }
 }
 
-export const Signup = connect(mapSignupState, mapDispatchSignUp)(withStyles(authFormStyles)(SignUp))
+export const Signup = connect(mapSignupState, mapDispatchSignUp)(withStyles(authFormStyles)(AuthForm))
 
-export const Login = connect(mapLoginState, mapDispatchSignIn)(withStyles(authFormStyles)(SignUp))
+export const Login = connect(mapLoginState, mapDispatchSignIn)(withStyles(authFormStyles)(AuthForm))
 

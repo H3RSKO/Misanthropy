@@ -41,8 +41,11 @@ export const addNewUser = (newUser) => async (dispatch) => {
 export const authenticateUser = (user) => async (dispatch) => {
   try {
     const {data} = await axios.post('/api/users/login', user)
+    console.log('Data >> ', data)
     return dispatch(getUser({...data, loggedIn: true}))
-  } catch(err) {console.log(err)}
+  } catch(authError) {
+    return dispatch(getUser({error: authError}))
+  }
 }
 
 // reducer
