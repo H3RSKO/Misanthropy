@@ -37,8 +37,8 @@
 
 #### Misc:
 <div style="color:#aeffff">
-	
-[🛰] Create placeholder for <a href="https://misanthropy.space">Misanthropy.space</a>   
+
+[🛰] Create placeholder for <a href="https://misanthropy.space">Misanthropy.space</a>
 <br>
 </div>
 
@@ -77,13 +77,14 @@
 [ ] Add Post Thunks to get all posts and create new posts<br>
 [🚀] Complete new user signup process<br>
 [ ] Complete user login process<br>
-[ ] Create Navbar<br>
+[🚀] Create Navbar<br>
 [ ] Create Stories/Thread frontend<br>
 [ ] Create Post frontend<br>
 </div>
 <br>
 <br>
 
+Currently working on refining the Navbar and completing the login process where wrong passwords are rejected on the loginpage instead of being redirected to Home.
 
 <h2> UX Highlights </h2>
 <br>
