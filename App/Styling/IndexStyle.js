@@ -7,10 +7,10 @@ const indexStyles = {
     padding: '3em',
     fontSize: 32,
   },
-  header: {
-    color: 'white',
-    'text-align': 'center'
-  },
+  // header: {
+  //   color: 'white',
+  //   'text-align': 'center'
+  // },
   subHeader: {
     'text-align': 'center',
     fontSize: 22,

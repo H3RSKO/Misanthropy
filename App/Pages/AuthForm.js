@@ -11,7 +11,7 @@ const AuthForm = (props) => {
   const {createUser, signInUser, signup, error} = props
   const classes = authFormStyles();
 
-  const [user, setUser] = useState({userName: '', email: '', password: ''})
+  const [user, setUser] = useState({userName: '', email: null, password: ''})
   const [isSignedIn, setIsSignedIn] = useState(false)
 
   // Takes form input and saves to state
@@ -26,7 +26,7 @@ const AuthForm = (props) => {
     // opens dialog to confirm account creation and open home page
     setIsSignedIn(true)
   }
-  console.log('>> props: ', props)
+
   return (
     <Container component="main" maxWidth="xs">
     <Box className={classes.borderBox} border={3}>
@@ -94,16 +94,16 @@ const AuthForm = (props) => {
           >
             {signup ? <div>Sign Up</div> : <div>Sign In</div>}
           </Button>
-          {signup ? <Grid container justify="flex-center">
+          {signup ? <Grid container >
             <Grid item>
               <Link href="/login" variant="body1">
                 Already have an account? Sign in
               </Link>
             </Grid>
-          </Grid> : <Grid container justify="flex-center">
+          </Grid> : <Grid container>
             <Grid item>
               <Link href="/signup" variant="body1">
-                Need an account? Sign Up!
+                Don't have an account? Sign Up!
               </Link>
             </Grid>
           </Grid>}

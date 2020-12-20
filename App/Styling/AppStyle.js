@@ -91,6 +91,13 @@ const theme = createMuiTheme({
         // justifySelf: 'center',
         // justifyContent: 'center'
       }
+    },
+    MuiAppBar: {
+      colorPrimary: {
+        // typo to remove default value
+        backgroundColor: 'rgba(0, 244, 100, 1. 0.85)',
+        padding: 0
+      }
     }
   }
 });
