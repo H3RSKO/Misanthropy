@@ -9,6 +9,8 @@ import {Link} from "react-router-dom";
 
 const Home = (props) => {
   const { classes } = props;
+
+
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs={10} >
@@ -41,6 +43,13 @@ const Home = (props) => {
             <Link to="/signup">
               <Button variant="contained" color="primary">
                 Signup
+              </Button>
+              </Link>
+            </Grid>
+            <Grid item xs={6} className={classes.buttons}>
+            <Link to="/login">
+              <Button variant="contained" color="primary">
+                Login
               </Button>
               </Link>
             </Grid>
