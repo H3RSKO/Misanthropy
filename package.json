@@ -1,7 +1,7 @@
 {
-  "name": "react-express-boilerplate",
+  "name": "Misanthropy.space",
   "version": "1.0.0",
-  "description": "Boilerplate for React, Express, Webpack, Babel",
+  "description": "Misanthropy.space",
   "main": "/App/App.js",
   "keywords": [
     "scifi",
@@ -15,6 +15,7 @@
   "scripts": {
     "start": "webpack -w --mode development & nodemon Backend/Server/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -w --mode development",
     "seed": "node Backend/Database/dbSeed.js"
   },
   "author": "yosef herskovitz",
