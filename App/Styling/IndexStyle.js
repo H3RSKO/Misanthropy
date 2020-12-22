@@ -1,19 +1,22 @@
 const indexStyles = {
-  root: {
-    'background-color': 'rgba(0,50,46,0.85)',
-    color: 'white',
-    padding: '3em',
-    fontSize: 32,
-  },
-  // header: {
+  // root: {
+  //   'background-color': 'rgba(0,50,46,0.85)',
   //   color: 'white',
-  //   'text-align': 'center'
+  //   padding: '3em',
+  //   fontSize: 32,
   // },
-  subHeader: {
-    'text-align': 'center',
-    fontSize: 22,
-    paddingBottom: '2em',
-  }
+  // // header: {
+  // //   color: 'white',
+  // //   'text-align': 'center'
+  // // },
+  // subHeader: {
+  //   'text-align': 'center',
+  //   fontSize: 22,
+  //   paddingBottom: '2em',
+  // }
+  // container: {
+  //   height: '100vh'
+  // }
 };
 
 export default indexStyles

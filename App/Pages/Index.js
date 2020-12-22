@@ -20,7 +20,7 @@ const Index = (props) => {
   // console.log(`Just set the the APP current user to ${currentUser}`)
 
   return (
-    <Grid container direction="row" justify="center">
+    <Grid container direction="row" justify="center" className={classes.container}>
       <Navbar style={{"margin-bottom": "2em"}} />
       <Switch>
           <Route exact path="/" component={Home} />
