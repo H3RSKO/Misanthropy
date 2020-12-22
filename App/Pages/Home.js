@@ -19,8 +19,6 @@ const Home = (props) => {
           elevation={3}
           square={true}
           className={classes.root}
-          // borderColor="primary.main"
-          // border={1}
           variant="outlined"
         >
           <Typography variant="h3" className={classes.subHeader}>Listen to the stories whispered accross the void.</Typography>

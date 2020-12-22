@@ -1,6 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
+import theme from './AppStyle'
 
-const authFormStyles = makeStyles((theme) => ({
+const authFormStyles = {
   borderBox: {
     borderColor: '#4D8FAC',
   },
@@ -27,10 +28,14 @@ const authFormStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  error: {
+    color: 'red',
+    fontSize: '0.5em',
+  },
   disclaimer: {
     fontSize: 15,
     color: '#aeffff'
   }
-})
-)
+}
+
 export default authFormStyles

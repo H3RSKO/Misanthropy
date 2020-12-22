@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const ADD_USER = 'ADD_USER'
 const GET_USER = 'GET_USER'
+const GET_ERROR = 'GET_ERROR'
 
 // ACTION CREATOR
 const getUsers = (users) => ({
@@ -19,6 +20,11 @@ const addUser = (newUser) => ({
 const getUser = (user) => ({
   type: GET_USER,
   user
+})
+
+const getError = (error) => ({
+  type: GET_ERROR,
+  error
 })
 
 // THUNK
@@ -41,22 +47,26 @@ export const addNewUser = (newUser) => async (dispatch) => {
 export const authenticateUser = (user) => async (dispatch) => {
   try {
     const {data} = await axios.post('/api/users/login', user)
-    console.log('Data >> ', data)
+    console.log('In thunk, user returned from API >> ', data)
+
     return dispatch(getUser({...data, loggedIn: true}))
   } catch(authError) {
-    return dispatch(getUser({error: authError}))
+    console.log('autherror>> ', authError)
+    return dispatch(getError({error: authError}))
   }
 }
 
 // reducer
-export default function (state = [], action) {
+export default function (state = {user: {loggedIn: false}}, action) {
   switch (action.type) {
     case GET_ALL_USERS:
       return action.users
     case ADD_USER:
-      return action.newUser
+      return {...state, user: action.newUser}
     case GET_USER:
-      return action.user
+      return {...state, user: action.user}
+    case GET_ERROR:
+      return {...state, error: action.error}
     default:
       return state
   }

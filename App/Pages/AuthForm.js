@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,23 +8,40 @@ import {addNewUser, authenticateUser} from '../store'
 import SignedIn from '../Components/SignedIn/SignedIn'
 
 const AuthForm = (props) => {
-  const {createUser, signInUser, signup, error} = props
-  const classes = authFormStyles();
+  const {createUser, signInUser, signup, error, user, state, classes} = props
+  // Dont do this 👇
+  // const classes = authFormStyles();
 
-  const [user, setUser] = useState({userName: '', email: null, password: ''})
+  const [currentUser, setCurrentUser] = useState({userName: '', email: null, password: ''})
   const [isSignedIn, setIsSignedIn] = useState(false)
+  // const [signInError, setSignInError] = useState(false)
+  // const [stateUser, setStateUser] = useState()
+
+  // useEffect(() => setStateUser(user), [])
+  // if (stateUser !== user) setStateUser(user)
+  console.log('State! ', state)
 
   // Takes form input and saves to state
   const handleInputChange = (event) => {
-    setUser({...user, [event.target.name]: event.target.value})
+    setCurrentUser({...currentUser, [event.target.name]: event.target.value})
+  }
+
+  if (!isSignedIn && user.loggedIn) {
+    setIsSignedIn(true)
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    signup ? await createUser({userName: user.userName, email: user.email, password: user.password}) : await signInUser({userName: user.userName, password: user.password})
-    console.log('user>>> ', user)
-    // opens dialog to confirm account creation and open home page
-    setIsSignedIn(true)
+    try {
+    signup ? await createUser({userName: currentUser.userName, email: currentUser.email, password: currentUser.password}) : await signInUser({userName: currentUser.userName, password: currentUser.password})
+    } catch(err) {
+      console.log('this is the error >> ', err)
+      console.log('also, error = ', error)
+    }
+  }
+
+  if (error) {
+    console.log('Massive error!!!', error)
   }
 
   return (
@@ -52,7 +69,7 @@ const AuthForm = (props) => {
                 label="User Name"
                 autoFocus
                 onChange={handleInputChange}
-                value={user.userName}
+                value={currentUser.userName}
               />
             </Grid>
             {signup? <Grid item xs={12}>
@@ -64,7 +81,7 @@ const AuthForm = (props) => {
                 name="email"
                 autoComplete="email"
                 onChange={handleInputChange}
-                value={user.email}
+                value={currentUser.email}
               />
             </Grid> : <></>}
             <Grid item xs={12}>
@@ -78,9 +95,12 @@ const AuthForm = (props) => {
                 id="password"
                 autoComplete="current-password"
                 onChange={handleInputChange}
-                value={user.password}
+                value={currentUser.password}
               />
             </Grid>
+            {error && <Grid item xs={12} className={classes.error}>
+              {error.error.response.data}
+            </Grid>}
             <Grid item xs={12} className={classes.disclaimer} >
             Emails are not required for sign-up, but are the only way to regain access to your account if you lose the password.
             </Grid>
@@ -111,8 +131,9 @@ const AuthForm = (props) => {
       </div>
       </Paper>
         </Box>
+        {console.log('here on bottom >> ', state)}
         {error && error.response && <div> {error.response.data} </div>}
-        {isSignedIn ? <SignedIn signup={signup} history={props.history} user={props.user}/> : <></>}
+        {isSignedIn ? <SignedIn signup={signup} history={props.history} signedInUser={user}/> : <></>}
     </Container>
   );
 }
@@ -120,7 +141,9 @@ const AuthForm = (props) => {
 const mapSignupState = (state) => {
   return {
     signup: true,
-    users: state.users,
+    // users: state.users,
+    user: state.user,
+    error: state.error
     // error: state.users.error,
   }
 }
@@ -128,7 +151,9 @@ const mapSignupState = (state) => {
 const mapLoginState = (state) => {
   return {
     signup: false,
-    // error: state.user.error,
+    user: state.user,
+    error: state.error,
+    state
   }
 }
 

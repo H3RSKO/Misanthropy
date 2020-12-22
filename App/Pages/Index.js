@@ -14,15 +14,14 @@ import Navbar from "../Components/Navbar/Navbar"
 
 const Index = (props) => {
   const { classes, user } = props;
-  console.log(props)
-  const [currentUser, setCurrentUser] = useState()
+  // const [currentUser, setCurrentUser] = useState()
 
-  useEffect(() => setCurrentUser(user), [])
-  console.log(`Just set the current user to ${currentUser}`)
+  // useEffect(() => setCurrentUser(user), [])
+  // console.log(`Just set the the APP current user to ${currentUser}`)
 
   return (
     <Grid container direction="row" justify="center">
-      <Navbar />
+      <Navbar style={{"margin-bottom": "2em"}} />
       <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/stories" component={Stories} />

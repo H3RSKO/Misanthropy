@@ -76,7 +76,7 @@
 [ ] Add Thread Thunks to get all threads and create new threads<br>
 [ ] Add Post Thunks to get all posts and create new posts<br>
 [🚀] Complete new user signup process<br>
-[ ] Complete user login process<br>
+[🚀] Complete user login process<br>
 [🚀] Create Navbar<br>
 [ ] Create Stories/Thread frontend<br>
 [ ] Create Post frontend<br>
@@ -84,7 +84,7 @@
 <br>
 <br>
 
-Currently working on refining the Navbar and completing the login process where wrong passwords are rejected on the loginpage instead of being redirected to Home.
+Next: User homepage and posting threads/posts
 
 <h2> UX Highlights </h2>
 <br>

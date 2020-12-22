@@ -20,32 +20,31 @@ const Navbar = (props) => {
   const { classes, user } = props;
   const [currentUser, setCurrentUser] = useState(false);
 
+  console.log('user in navbar >> ', user)
   useEffect(() => setCurrentUser(user), [])
   if(currentUser !== user)setCurrentUser(user)
 
-  console.log('here<<>> : ', props)
-  console.log('here<<>>@@2 : ', user)
-  console.log('here<<>>@@2 currentUser: ', currentUser)
-
   return (
-    <div className={classes.root}>
+    <div className={classes.navBarContainer}>
       <AppBar position="sticky">
-        <Toolbar>
+        <Toolbar className={classes.root}>
           <Typography variant="h6" className={classes.title}>
             Misanthropy.space
           </Typography>
-          {console.log("the user is>> ", user)}
           {currentUser.loggedIn ? (
-            <div>
+            <Grid container direction="row" justify="flex-end" className={classes.navbarRight}>
               <Typography
                 variant="h6"
                 className={classes.title}
-              ><AlienHead />{` Welcome ${user.userName}`}</Typography>{" "}
+              >
+                  <AlienHead />
+                  {` Welcome, ${user.userName}!`}
+              </Typography>
               {/* need to create userpage */}
-              <Link to="/userpage">
-                <Button color="inherit">User Page</Button>
+              <Link to="/userpage" >
+                <Button color="inherit" style={{'marginLeft': '1em'}}>User Page</Button>
               </Link>
-            </div>
+            </Grid>
           ) : (
             <Link to="/login">
               <Button color="inherit">Login</Button>
@@ -60,7 +59,7 @@ const Navbar = (props) => {
 // allow navbar to see user logged-in status
 const mapState = (state) => {
   return {
-    user: state,
+    user: state.user,
   };
 };
 

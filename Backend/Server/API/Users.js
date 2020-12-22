@@ -20,7 +20,7 @@ router.post('/login', async (req, res, next) => {
       userName: req.body.userName
     }
     })
-    console.log('user >> ', user)
+    console.log('>> login API')
     if (!user) {
       console.log(`User ${req.body.userName} not found!`)
       res.status(401).send('Username not found')

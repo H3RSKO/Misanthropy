@@ -1,5 +1,3 @@
-import { responsiveFontSizes } from "@material-ui/core";
-
 const indexStyles = {
   root: {
     'background-color': 'rgba(0,50,46,0.85)',
