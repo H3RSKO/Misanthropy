@@ -1,6 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import '../../public/fonts.css'
-import button11 from '../../public/images/button11.png'
+import button11 from '/public/images/button11.png'
 
 const theme = createMuiTheme({
   palette: {
