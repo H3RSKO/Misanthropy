@@ -15,8 +15,14 @@ const createApp = () => {
 // needs to be listed before the routes are defined
 app.use(bodyParser.json());
 
+// set Port to 8080 for local and process.env for Heroku deployment
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8080;
+}
+
 const startServer = () => {
-  app.listen(8080, () => console.log('Mysanthropy listening on Port 8080'));
+  app.listen(port, () => console.log('Mysanthropy listening on Port 8080'));
 }
 
 // connect to backend APIs
