@@ -1,6 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import '../../public/fonts.css'
-import button11 from '/public/images/button11.png'
+// import button11 from 'images/button11.png'
 
 const theme = createMuiTheme({
   palette: {
@@ -21,7 +21,8 @@ const theme = createMuiTheme({
     fontFamily: "Piazzolla",
     // fontSize: 19,
     button: {
-      backgroundImage: 'url(' + button11 + ')',
+      // backgroundImage: 'url(' + button11 + ')',
+      backgroundImage: "url('/images/Button11.png ')",
       'background-repeat': 'no-repeat',
       // 'background-attachment': 'fixed',
       'background-position': 'center',
