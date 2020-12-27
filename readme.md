@@ -93,5 +93,10 @@ Next: User homepage and posting threads/posts
 	<img width="1000" src="./public/images/signup.gif">
 	<br>
 </h1>
-
+<br>
+<h3> User Login </h3>
+<h1 align="center">
+	<img width="1000" src="./public/images/login.gif">
+	<br>
+</h1>
 </div>
