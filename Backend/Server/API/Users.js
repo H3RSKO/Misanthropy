@@ -15,6 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
   try {
+    // console.log(`the req is: ${req.sessionID} `)
     const user = await User.findOne({
     where: {
       userName: req.body.userName
@@ -28,6 +29,8 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for ', req.body.userName)
       res.status(401).send('Wrong password')
     } else {
+      // set cookie sid to userName
+      req.session.sid = user.userName
       res.json(user)
     }
   } catch(err) {next(err)}
@@ -36,6 +39,8 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req ,res, next) => {
   try {
     const user = await User.create(req.body)
+     // set cookie sid to userName
+    req.session.sid = user.userName
     res.json(user)
   } catch(err) {next(err)}
 })

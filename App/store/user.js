@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const ADD_USER = 'ADD_USER'
 const GET_USER = 'GET_USER'
+const GET_COOKIE_USER = 'GET_COOOKIE_USER'
 const GET_ERROR = 'GET_ERROR'
 
 // ACTION CREATOR
@@ -20,6 +21,11 @@ const addUser = (newUser) => ({
 const getUser = (user) => ({
   type: GET_USER,
   user
+})
+
+const getCookieUser = (cookieUser) => ({
+  type: GET_COOKIE_USER,
+  cookieUser
 })
 
 const getError = (error) => ({
@@ -56,15 +62,37 @@ export const authenticateUser = (user) => async (dispatch) => {
   }
 }
 
+// check if user has cookie
+export const checkUserCookie = (cookie) => async (dispatch) => {
+  console.log('checkUser is running')
+  console.log(`cookie is ${cookie}`)
+  try {
+    const { data } = await axios.get(`/api/auth/me/${cookie}`)
+    console.log(`checkUser user is: ${data}`)
+    if (data) {
+      return dispatch(getCookieUser({...data, loggedIn: true}))
+    } else {
+      console.log('no cookie?')
+      return
+    }
+  } catch(authError) {
+    console.log('autherror>> ', authError)
+    return dispatch(getError({error: authError}))
+  }
+}
+
 // reducer
 export default function (state = {user: {loggedIn: false}}, action) {
+  console.log(`The action is ${action.type}`)
   switch (action.type) {
     case GET_ALL_USERS:
-      return action.users
+      return {...state, allUsers: action.users}
     case ADD_USER:
       return {...state, user: action.newUser}
     case GET_USER:
       return {...state, user: action.user}
+    case GET_COOKIE_USER:
+      return {...state, user: action.cookieUser}
     case GET_ERROR:
       return {...state, error: action.error}
     default:
