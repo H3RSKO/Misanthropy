@@ -1,7 +1,7 @@
 const router = require('express').Router()
 // const {db} = require('../../Database')
 const {User} = require('../../Database/models')
-const sessionStore = require('../Server')
+const db = require('../../Database')
 
 module.exports = router
 
@@ -12,20 +12,23 @@ module.exports = router
 //     console.log('trying to find cookiedb: >> ', db)
 //   }
 // })
+const sessionStore = db.models.Session
 
 router.get('/me/:cookie', async (req, res) => {
   console.log(`in Auth api the session ID is ${req.sessionID}`)
-  console.log(`but the cookie is ${req.body.cookie}`)
-  console.logg(`but maybe cookie is ${req.params.cookie}`)
+
   if (req.sessionID) {
     const userCookie = await sessionStore.findOne({
       where: {
-        sid: req.params.cookie
+        sid: req.sessionID
       }
     })
-    // pulls name from cookie data
-    const userNameFromCookie = userCookie.data.sid
-    console.log(`the user is ${user}`)
+   // pulls name from cookie data
+    // data is saved as a string to need to pull it manually
+    let userNameFromCookie = userCookie.data.split(":").pop()
+    userNameFromCookie = userNameFromCookie.substring(1, userNameFromCookie.length - 2)
+
+
     console.log(`the userName is ${userNameFromCookie}`)
     const user = await User.findOne({
       where: {

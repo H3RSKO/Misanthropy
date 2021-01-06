@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import indexStyles from "../Styling/IndexStyle";
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import checkUserCookie from '../store/user'
+import {checkUserCookie} from '../store/user'
 import Home from './Home'
 import Stories from './Stories'
 import ProfilePage from './ProfilePage'
