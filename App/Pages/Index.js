@@ -5,29 +5,35 @@ import { withStyles } from "@material-ui/core/styles";
 import indexStyles from "../Styling/IndexStyle";
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import checkUserCookie from '../store/user'
+import {loginUserFromCookie, checkUserCookie} from '../store/user'
 import Home from './Home'
 import Stories from './Stories'
 import ProfilePage from './ProfilePage'
 import {Signup, Login} from './AuthForm'
 import Navbar from "../Components/Navbar/Navbar"
-
+import axios from 'axios'
 
 const Index = (props) => {
-  const { classes, user, checkUser } = props;
+  const { classes, user, checkUser, loginUser } = props;
   // const [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
     if (document.cookie) {
       const userChecker = async (cookie) => {
         try {
-          await checkUser(cookie)
+          // bypass thunk and check cookie directly
+          const {cookieUser} = await checkUser(cookie)
+          // const {data} = await axios.get(`/api/auth/me/${cookie}`)
+          console.log(`the userChecker data is ${Object.keys(data)}`)
+
+          loginUser(cookieUser)
         } catch(err) {console.log(err)}
       }
       // get plain sid
       const cookieSID = document.cookie.split("=s%3A").pop()
       console.log(`new cookie: ${cookieSID}`)
       console.log('ran checkUser')
+
       userChecker(cookieSID)
     }
   }, [])
@@ -52,7 +58,8 @@ const mapState = (state) => {user: state.userName}
 
 const mapDispatch = (dispatch) => {
   return {
-    checkUser: (cookie) => dispatch(checkUserCookie(cookie))
+    checkUser: (cookie) => dispatch(checkUserCookie(cookie)),
+    loginUser: (user) => dispatch(loginUserFromCookie(user))
   }
 }
 

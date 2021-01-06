@@ -7,15 +7,18 @@ const history = require('connect-history-api-fallback')
 const db = require('../Database')
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const sessionStore = new SequelizeStore({db})
 
-module.exports = sessionStore
-
+const sessionStore = new SequelizeStore({
+  db: db,
+  // checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+  // expiration: 10 * 24 * 60 * 60 * 1000,  // The maximum age (in milliseconds) of a valid session. 10 days
+})
 
 const createApp = () => {
   app.use(express.static('public'))
   app.use(express.urlencoded({extended: true}))
 }
+
 // user session
 app.use(session({
   secret: process.env.SESSION_SECRET || 'a super secret secret',
@@ -24,10 +27,15 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     sameSite: true,
-    httpOnly: false
+    httpOnly: false,
   }
 }))
 
+// not: session, sessionStore, db.session, db.Session,
+
+const currentSession = db.models.Session
+
+module.exports = currentSession
 
 // needs to be listed before the routes are defined
 app.use(bodyParser.json());

@@ -81,9 +81,17 @@ export const checkUserCookie = (cookie) => async (dispatch) => {
   }
 }
 
+// login user after runnig cookie through main index.js
+export const loginUserFromCookie = (user) => async (dispatch) => {
+  try {
+    console.log(`in thunk the user is ${user}`)
+    return dispatch(getUser({...user, loggedIn: true}))
+  } catch(err) {return dispatch(getError({error: err}))}
+}
+
 // reducer
 export default function (state = {user: {loggedIn: false}}, action) {
-  console.log(`The action is ${action.type}`)
+  // console.log(`The action is ${action.type}`)
   switch (action.type) {
     case GET_ALL_USERS:
       return {...state, allUsers: action.users}
