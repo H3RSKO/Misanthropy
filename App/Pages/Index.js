@@ -15,10 +15,12 @@ import Navbar from "../Components/Navbar/Navbar"
 
 const Index = (props) => {
   const { classes, user, checkUser } = props;
-  // const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState({loggedIn: false})
+
+  if(user) setCurrentUser(user)
 
   useEffect(() => {
-    if (document.cookie) {
+    if (document.cookie && !currentUser.loggedIn) {
       const userChecker = async (cookie) => {
         try {
           await checkUser(cookie)
@@ -26,14 +28,10 @@ const Index = (props) => {
       }
       // get plain sid
       const cookieSID = document.cookie.split("=s%3A").pop()
-      console.log(`new cookie: ${cookieSID}`)
-      console.log('ran checkUser')
       userChecker(cookieSID)
     }
   }, [])
-  // console.log(`Just set the the APP current user to ${currentUser}`)
-  console.log(`the user in index is: ${user}`)
-  console.log(`the document cookie is: ${document.cookie}`)
+
   return (
     <Grid container direction="row" justify="center" className={classes.container}>
       <Navbar style={{"margin-bottom": "2em"}} />
