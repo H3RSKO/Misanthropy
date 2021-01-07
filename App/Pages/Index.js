@@ -18,9 +18,9 @@ const Index = (props) => {
   const [currentUser, setCurrentUser] = useState({loggedIn: false})
 
   if(user) setCurrentUser(user)
-
+  console.log(`the cookie is: ${document.cookie}`)
   useEffect(() => {
-    if (document.cookie && !currentUser.loggedIn) {
+    if (document.cookie && !currentUser.loggedIn && document.cookie !== 'connect.sid=') {
       const userChecker = async (cookie) => {
         try {
           await checkUser(cookie)

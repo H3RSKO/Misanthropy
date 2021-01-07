@@ -44,3 +44,11 @@ router.post('/signup', async (req ,res, next) => {
     res.json(user)
   } catch(err) {next(err)}
 })
+
+router.post('/logout', async (req, res, next) => {
+  try {
+    // delete cookie
+    // set remove user from redux and set user to logout
+    // do i even need anything serverside for this??
+  } catch(err) {next(err)}
+})
