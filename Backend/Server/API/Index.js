@@ -1,6 +1,7 @@
 const router = require('express').Router()
 module.exports = router
 
+router.use('/auth', require('./Auth'))
 router.use('/users', require('./Users'))
 router.use('/posts', require('./Posts'))
 router.use('/threads', require('./Threads'))

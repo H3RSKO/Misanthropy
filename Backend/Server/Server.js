@@ -5,15 +5,33 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const history = require('connect-history-api-fallback')
 const db = require('../Database')
+const session = require('express-session')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const sessionStore = new SequelizeStore({db})
+
+// module.exports = sessionStore
 
 
 const createApp = () => {
   app.use(express.static('public'))
   app.use(express.urlencoded({extended: true}))
 }
+// user session
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'a super secret secret',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    sameSite: true,
+    httpOnly: false
+  }
+}))
+
 
 // needs to be listed before the routes are defined
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // set Port to 8080 for local and process.env for Heroku deployment
 let port = process.env.PORT;
@@ -40,6 +58,7 @@ app.use((req, res, next) => {
 // sync db
 const syncDb = () => db.sync()
 
+
 app.get('/', async (req, res, next) => {
   try {
   res.sendFile(path.join(__dirname, '../../public/index.html'))
@@ -53,6 +72,7 @@ app.use((err, req, res, next) => {
 })
 
 const bootApp = async () => {
+  await sessionStore.sync()
   await syncDb()
   await createApp()
   await startServer()

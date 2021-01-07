@@ -14,11 +14,7 @@ const AuthForm = (props) => {
 
   const [currentUser, setCurrentUser] = useState({userName: '', email: null, password: ''})
   const [isSignedIn, setIsSignedIn] = useState(false)
-  // const [signInError, setSignInError] = useState(false)
-  // const [stateUser, setStateUser] = useState()
 
-  // useEffect(() => setStateUser(user), [])
-  // if (stateUser !== user) setStateUser(user)
   console.log('State! ', state)
 
   // Takes form input and saves to state

@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import indexStyles from "../Styling/IndexStyle";
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {checkUserCookie} from '../store/user'
 import Home from './Home'
 import Stories from './Stories'
 import ProfilePage from './ProfilePage'
@@ -13,11 +14,23 @@ import Navbar from "../Components/Navbar/Navbar"
 
 
 const Index = (props) => {
-  const { classes, user } = props;
-  // const [currentUser, setCurrentUser] = useState()
+  const { classes, user, checkUser } = props;
+  const [currentUser, setCurrentUser] = useState({loggedIn: false})
 
-  // useEffect(() => setCurrentUser(user), [])
-  // console.log(`Just set the the APP current user to ${currentUser}`)
+  if(user) setCurrentUser(user)
+
+  useEffect(() => {
+    if (document.cookie && !currentUser.loggedIn) {
+      const userChecker = async (cookie) => {
+        try {
+          await checkUser(cookie)
+        } catch(err) {console.log(err)}
+      }
+      // get plain sid
+      const cookieSID = document.cookie.split("=s%3A").pop()
+      userChecker(cookieSID)
+    }
+  }, [])
 
   return (
     <Grid container direction="row" justify="center" className={classes.container}>
@@ -35,8 +48,14 @@ const Index = (props) => {
 
 const mapState = (state) => {user: state.userName}
 
+const mapDispatch = (dispatch) => {
+  return {
+    checkUser: (cookie) => dispatch(checkUserCookie(cookie))
+  }
+}
+
 Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapState)(withStyles(indexStyles)(Index));
+export default connect(mapState, mapDispatch)(withStyles(indexStyles)(Index));

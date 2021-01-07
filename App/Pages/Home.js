@@ -7,10 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
 
 
+
 const Home = (props) => {
   const { classes } = props;
 
-
+  console.log(`the coookie is: >> ${document.cookie}`)
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs={10} >
