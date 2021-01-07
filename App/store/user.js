@@ -5,6 +5,7 @@ const GET_ALL_USERS = 'GET_ALL_USERS'
 const ADD_USER = 'ADD_USER'
 const GET_USER = 'GET_USER'
 const GET_COOKIE_USER = 'GET_COOOKIE_USER'
+const LOG_OUT_USER = 'LOG_OUT_USER'
 const GET_ERROR = 'GET_ERROR'
 
 // ACTION CREATOR
@@ -28,10 +29,16 @@ const getCookieUser = (cookieUser) => ({
   cookieUser
 })
 
+const logOutUser = (defaultUser) => ({
+  type: LOG_OUT_USER,
+  defaultUser
+})
+
 const getError = (error) => ({
   type: GET_ERROR,
   error
 })
+
 
 // THUNK
 export const fetchUsers = () => async (dispatch) => {
@@ -64,15 +71,12 @@ export const authenticateUser = (user) => async (dispatch) => {
 
 // check if user has cookie
 export const checkUserCookie = (cookie) => async (dispatch) => {
-  console.log('checkUser is running')
-  console.log(`cookie is ${cookie}`)
   try {
     const { data } = await axios.get(`/api/auth/me/${cookie}`)
-    console.log(`checkUser user is: ${data}`)
     if (data) {
       return dispatch(getCookieUser({...data, loggedIn: true}))
     } else {
-      console.log('no cookie?')
+      console.log('no cookie!')
       return
     }
   } catch(authError) {
@@ -81,9 +85,19 @@ export const checkUserCookie = (cookie) => async (dispatch) => {
   }
 }
 
+// logout user
+export const logOutCurrentUser = () => async (dispatch) => {
+  try {
+    // destroy cookie
+    document.cookie = "connect.sid="
+
+    // set state to no user
+    return dispatch(getUser({loggedIn: false}))
+  } catch(err) {dispatch(getError({error: err}))}
+}
+
 // reducer
 export default function (state = {user: {loggedIn: false}}, action) {
-  console.log(`The action is ${action.type}`)
   switch (action.type) {
     case GET_ALL_USERS:
       return {...state, allUsers: action.users}
@@ -93,6 +107,8 @@ export default function (state = {user: {loggedIn: false}}, action) {
       return {...state, user: action.user}
     case GET_COOKIE_USER:
       return {...state, user: action.cookieUser}
+    case LOG_OUT_USER:
+      return {...state, user: action.defaultUser}
     case GET_ERROR:
       return {...state, error: action.error}
     default:

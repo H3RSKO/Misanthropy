@@ -15,8 +15,6 @@ const AuthForm = (props) => {
   const [currentUser, setCurrentUser] = useState({userName: '', email: null, password: ''})
   const [isSignedIn, setIsSignedIn] = useState(false)
 
-  console.log('State! ', state)
-
   // Takes form input and saves to state
   const handleInputChange = (event) => {
     setCurrentUser({...currentUser, [event.target.name]: event.target.value})
@@ -32,7 +30,6 @@ const AuthForm = (props) => {
     signup ? await createUser({userName: currentUser.userName, email: currentUser.email, password: currentUser.password}) : await signInUser({userName: currentUser.userName, password: currentUser.password})
     } catch(err) {
       console.log('this is the error >> ', err)
-      console.log('also, error = ', error)
     }
   }
 
@@ -127,7 +124,6 @@ const AuthForm = (props) => {
       </div>
       </Paper>
         </Box>
-        {console.log('here on bottom >> ', state)}
         {error && error.response && <div> {error.response.data} </div>}
         {isSignedIn ? <SignedIn signup={signup} history={props.history} signedInUser={user}/> : <></>}
     </Container>

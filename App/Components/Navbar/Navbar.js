@@ -14,13 +14,14 @@ import { Link } from "react-router-dom";
 import navbarStyles from "./NavbarStyles";
 import AlienHead from "../../../public/icons/alien-head"
 import { withStyles } from "@material-ui/core/styles";
+import { logOutCurrentUser } from "../../store/user"
 
 
 const Navbar = (props) => {
-  const { classes, user } = props;
+  const { classes, user, logOut } = props;
   const [currentUser, setCurrentUser] = useState(false);
 
-  console.log('user in navbar >> ', user)
+
   useEffect(() => setCurrentUser(user), [])
   if(currentUser !== user)setCurrentUser(user)
 
@@ -44,6 +45,9 @@ const Navbar = (props) => {
               <Link to="/userpage" >
                 <Button color="inherit" style={{'marginLeft': '1em'}}>User Page</Button>
               </Link>
+              <Link to="/" >
+                <Button color="inherit" style={{'marginLeft': '1em'}} onClick={logOut}>Logout</Button>
+              </Link>
             </Grid>
           ) : (
             <Link to="/login">
@@ -63,4 +67,11 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState, null)(withStyles(navbarStyles)(Navbar));
+//
+const mapDispatch = (dispatch) => {
+  return {
+    logOut: () => dispatch(logOutCurrentUser())
+  }
+}
+
+export default connect(mapState, mapDispatch)(withStyles(navbarStyles)(Navbar));
