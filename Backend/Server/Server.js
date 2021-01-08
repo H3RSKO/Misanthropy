@@ -7,7 +7,11 @@ const history = require('connect-history-api-fallback')
 const db = require('../Database')
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const sessionStore = new SequelizeStore({db})
+const sessionStore = new SequelizeStore({
+  db: db,
+  checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+  expiration: 10 * 24 * 60 * 60 * 1000,  // The maximum age (in milliseconds) of a valid session. 10 days
+})
 
 // module.exports = sessionStore
 
