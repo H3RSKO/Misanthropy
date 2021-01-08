@@ -10,7 +10,6 @@ const SignedIn = (props) => {
   const { classes, signedInUser, signup } = props;
   const {userName } = signedInUser
 
-  console.log('the userName is >> ', userName)
   const handleClose = () => {
     // redirect to home page
     props.history.push("/");

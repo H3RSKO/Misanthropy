@@ -99,6 +99,19 @@ const theme = createMuiTheme({
         backgroundColor: 'rgba(0, 244, 100, 1. 0.85)',
         padding: 0
       }
+    },
+    MuiPopover: {
+      paper: {
+        // maxWidth: '100px',
+        // maxHeight: '100px',
+        // width: '6em'
+      }
+    },
+    MuiMenu: {
+      paper: {
+        marginTop: '2em',
+        padding: 0
+      }
     }
   }
 });
