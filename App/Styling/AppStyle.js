@@ -111,8 +111,13 @@ const theme = createMuiTheme({
       paper: {
         marginTop: '2em',
         padding: 0
+      },
+      list: {
+        border: '3px solid',
+        borderColor: '#4D8FAC',
       }
-    }
+    },
+
   }
 });
 // theme = responsiveFontSizes(theme);

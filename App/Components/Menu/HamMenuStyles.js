@@ -5,9 +5,12 @@ const hamMenuStyles = {
     // color: 'white'
     },
   hamburgerContainer: {
-    display: 'flex',
-    justifyContent: 'center',
+    marginTop: '0.5em',
     paddingLeft: '1em'
+  },
+  link: {
+    color: 'white',
+    textDecoration: 'none'
   }
 }
 

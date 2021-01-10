@@ -19,6 +19,10 @@ const navbarStyles = {
   },
   navbarRight: {
 
+  },
+  webName: {
+    color: 'white',
+    textDecoration: 'none'
   }
 }
 export default navbarStyles
