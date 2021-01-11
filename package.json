@@ -15,7 +15,7 @@
   "scripts": {
     "start": "webpack -w --mode development & nodemon Backend/Server/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -w --mode development",
+    "build": "webpack -w --mode development & node Backend/Server/Server.js",
     "seed": "node Backend/Database/dbSeed.js"
   },
   "author": "yosef herskovitz",

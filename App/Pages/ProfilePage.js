@@ -39,11 +39,9 @@ ProfilePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapDispatch = (dispatch) => {
-  return {
+const mapDispatch = (dispatch) => ({
     getUsers: () => dispatch(fetchUsers()),
-  }
-}
+})
 
 const mapState = (state) => ({users: state})
 

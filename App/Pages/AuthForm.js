@@ -150,20 +150,16 @@ const mapLoginState = (state) => {
 }
 
 
-const mapDispatchSignUp = (dispatch) => {
-  return {
+const mapDispatchSignUp = (dispatch) => ({
     createUser: (newUser) => dispatch(addNewUser(newUser))
-  }
-}
+})
 
 // 1: create thunk to sign in user
 // 1.5: make API route to authenticate user
 // 2: set authform page to display correct by signup vs login
-const mapDispatchSignIn = (dispatch) => {
-  return {
+const mapDispatchSignIn = (dispatch) => ({
     signInUser: (user) => dispatch(authenticateUser(user))
-  }
-}
+})
 
 export const Signup = connect(mapSignupState, mapDispatchSignUp)(withStyles(authFormStyles)(AuthForm))
 

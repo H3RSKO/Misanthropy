@@ -22,8 +22,6 @@ const Navbar = (props) => {
   useEffect(() => setCurrentUser(user), []);
   if (currentUser !== user) setCurrentUser(user);
 
-  console.log(`width is: ${width}`)
-
   return (
     <div className={classes.navBarContainer}>
       <AppBar position="sticky">

@@ -34,14 +34,14 @@ const HamMenu = (props) => {
         aria-controls="customized-menu"
         aria-haspopup="true"
       >
-        <img src="/images/sciMenu2.png" style={{ height: "1.5em" }} />
+        <img src="/images/sciMenu2.png" style={{ height: "1.65em" }} />
       </div>
       <Menu
         className={classes.menu}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        elevation={-3}
+
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",
@@ -55,12 +55,12 @@ const HamMenu = (props) => {
       >
         {/* need to create userpage */}
         {menuItems.map((item, i) => (
-          <MenuItem key={i} onClick={item.action}>
-            <ListItem>
+          <MenuItem key={i} onClick={item.action} className={classes.listItem}>
+            {/* <ListItem className={classes.listItem}> */}
               <Link to={item.link} className={classes.link}>
                 <ListItemText primary={item.name}>{item.name}</ListItemText>
               </Link>
-            </ListItem>
+            {/* </ListItem> */}
           </MenuItem>
         ))}
       </Menu>
@@ -69,9 +69,7 @@ const HamMenu = (props) => {
 };
 
 const mapDispatch = (dispatch) => {
-  return {
-    logOut: () => dispatch(logOutCurrentUser()),
-  };
+    logOut: () => dispatch(logOutCurrentUser())
 };
 
 export default connect(null, mapDispatch)(withStyles(hamMenuStyles)(HamMenu));

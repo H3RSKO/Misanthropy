@@ -6,7 +6,13 @@ const hamMenuStyles = {
     },
   hamburgerContainer: {
     marginTop: '0.5em',
-    paddingLeft: '1em'
+    paddingLeft: '1em',
+    cursor: 'pointer'
+  },
+  listItem: {
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
   link: {
     color: 'white',

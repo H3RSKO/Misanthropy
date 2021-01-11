@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Paper, Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import indexStyles from "../Styling/IndexStyle";
@@ -18,8 +18,9 @@ const Index = (props) => {
   const [currentUser, setCurrentUser] = useState({loggedIn: false})
 
   if(user) setCurrentUser(user)
-  console.log(`the cookie is: ${document.cookie}`)
+
   useEffect(() => {
+    // checks cookie if there is a valid cookie and no user is loggedIn
     if (document.cookie && !currentUser.loggedIn && document.cookie !== 'connect.sid=') {
       const userChecker = async (cookie) => {
         try {
@@ -48,11 +49,9 @@ const Index = (props) => {
 
 const mapState = (state) => {user: state.userName}
 
-const mapDispatch = (dispatch) => {
-  return {
+const mapDispatch = (dispatch) => ({
     checkUser: (cookie) => dispatch(checkUserCookie(cookie))
-  }
-}
+})
 
 Index.propTypes = {
   classes: PropTypes.object.isRequired,
