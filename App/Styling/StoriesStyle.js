@@ -18,6 +18,10 @@ const storiesStyle = {
     'text-align': 'center',
     'justify-content': "center",
     'justify-self': "center"
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#aeffff'
   }
 }
 

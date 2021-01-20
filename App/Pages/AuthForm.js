@@ -143,8 +143,8 @@ const mapSignupState = (state) => {
 const mapLoginState = (state) => {
   return {
     signup: false,
-    user: state.user,
-    error: state.error,
+    user: state.users.user,
+    error: state.users.error,
     state
   }
 }

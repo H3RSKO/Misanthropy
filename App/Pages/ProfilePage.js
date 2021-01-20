@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Paper, Button, Grid, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import profilePageStyle from '../Styling/ProfilePageStyle'
-import { useState, useEffect } from "react";
 import {fetchUsers} from '../store'
 import {connect} from 'react-redux'
 
 const ProfilePage = (props) => {
 
-  const { classes } = props
+  const { classes, user } = props
 
-  useEffect(() => {
-    props.getUsers()
-  }, [])
+    console.log(`the user is ${user}`)
 
   return (
     <Grid container direction="row" justify="center">
@@ -24,10 +21,7 @@ const ProfilePage = (props) => {
           square={true}
           className={classes.root}
         >
-          Profile Page
-          {props.users.map(user => (
-            <div>{user.name}</div>
-          ))}
+          Welcome {user.userName}!
         </Paper>
         </Box>
       </Grid>
@@ -40,10 +34,10 @@ ProfilePage.propTypes = {
 };
 
 const mapDispatch = (dispatch) => ({
-    getUsers: () => dispatch(fetchUsers()),
+    getProfile: () => dispatch(fetchUsers()),
 })
 
-const mapState = (state) => ({users: state})
+const mapState = (state) => ({user: state.users.user})
 
 export default connect(mapState, mapDispatch)(withStyles(profilePageStyle)(ProfilePage))
 

@@ -17,7 +17,7 @@ const HamMenu = (props) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuItems, setMenuItems] = useState([
-    { name: "User Page", link: "/userpage", action: null },
+    { name: "User Page", link: "/profile", action: null },
     { name: "Logout", link: "/", action: logOut },
   ]);
 
