@@ -1,49 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from 'react'
+import { Paper, Button, Grid, Box, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-// import {Editor, EditorState, RichUtils} from 'draft-js';
-import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
-import createToolbarPlugin, {Separator} from '@draft-js-plugins/static-toolbar';
-import {
-  ItalicButton,
-  BoldButton,
-  UnderlineButton,
-  CodeButton,
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  HeadlineThreeButton,
-  UnorderedListButton,
-  OrderedListButton,
-  BlockquoteButton,
-  CodeBlockButton,
-} from '@draft-js-plugins/buttons';
-import editorStyles from './editorStyles.module.css'
-// import 'draft-js/dist/Draft.css';
-import newThreadStyle from '../Styling/NewThreadStyle'
-
+import TextEditor from '../Components/TextEditor/TextEditor'
+import NewThreadStyles from '../Styling/NewThreadStyle'
 
 const NewThread = (props) => {
   const {classes} = props
-  const [editorState, setEditorState] = useState(
-    () => EditorState.createEmpty(),
-  );
-
-  const handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    if (newState) {
-      setEditorState(newState);
-      return 'handled';
-    }
-
-    return 'not-handled';
-  }
-
   return (
-    <div className={classes.editorContainer}>
-      <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand}  placeholder="Enter some text..." />
-    </div>
+    <Grid container direction="row" justify="center">
+      <Grid item xs={10} >
+        <Box className={classes.borderBox} border={3}>
+        <Paper
+          elevation={3}
+          square={true}
+          className={classes.root}
+          variant="outlined"
+        >
+          <Typography variant="h3" className={classes.subHeader}>New Thread</Typography>
+      <TextEditor />
+
+        </Paper>
+        </Box>
+        </Grid>
+    </Grid>
   )
 }
 
-
-export default withStyles(newThreadStyle)(NewThread)
+export default withStyles(NewThreadStyles)(NewThread)
