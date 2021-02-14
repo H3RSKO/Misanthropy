@@ -1,6 +1,3 @@
-ck.ck-reset_all {
-  background-color: aqua;
-}
 
 :root {
   /* Overrides the border radius setting in the theme. */
@@ -10,15 +7,18 @@ ck.ck-reset_all {
   --ck-font-size-base: 14px;
 
   /* Helper variables to avoid duplication in the colors. */
-  --ck-custom-background: hsl(270, 1%, 29%);
+  /* --ck-custom-background: hsl(270, 1%, 29%); */
+  /* --ck-custom-background:rgba(0,50,46,0.15); */
   --ck-custom-foreground: hsl(255, 3%, 18%);
-  --ck-custom-border: hsl(300, 1%, 22%);
+  /* --ck-custom-border: hsl(300, 1%, 22%); */
+  --ck-custom-border: #aeffffc5;
   --ck-custom-white: hsl(0, 0%, 100%);
+  --ck-color-base-background: rgba(0,50,46,0.15)
 
   /* -- Overrides generic colors. ------------------------------------------------------------- */
 
   --ck-color-base-foreground: var(--ck-custom-background);
-  --ck-color-focus-border: hsl(208, 90%, 62%);
+  --ck-color-focus-border: #aeffffcb;
   --ck-color-text: hsl(0, 0%, 98%);
   --ck-color-shadow-drop: hsla(0, 0%, 0%, 0.2);
   --ck-color-shadow-inner: hsla(0, 0%, 0%, 0.1);
@@ -59,12 +59,13 @@ ck.ck-reset_all {
 
   /* -- Overrides the default .ck-input class colors. ----------------------------------------- */
 
-  --ck-color-input-background: var(--ck-custom-background);
-  --ck-color-input-border: hsl(257, 3%, 43%);
+  /* --ck-color-input-background: var(--ck-custom-background); */
+  --ck-color-input-border: #aeffffc5;
   --ck-color-input-text: hsl(0, 0%, 98%);
   --ck-color-input-disabled-background: hsl(255, 4%, 21%);
-  --ck-color-input-disabled-border: hsl(250, 3%, 38%);
+  --ck-color-input-disabled-border: #aeffffc5;
   --ck-color-input-disabled-text: hsl(0, 0%, 78%);
+  --ck-color-base-border: #aeffffc5;
 
   /* -- Overrides the default .ck-labeled-field-view class colors. ---------------------------- */
 
