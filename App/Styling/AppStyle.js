@@ -117,9 +117,19 @@ const theme = createMuiTheme({
         borderColor: '#4D8FAC',
       }
     },
-
+    MuiCheckbox: {
+      root: {
+        color: 'secondary'
+      }
+    }
+    // MuiInputBase: {
+    //   root: {
+    //     color: 'white',
+    //   }
+    // },
   }
 });
+
 // theme = responsiveFontSizes(theme);
 
 export default theme

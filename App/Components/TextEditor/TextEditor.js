@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import './TextEditorStyles.css'
 
 const TextEditor = (props) => {
+  const {textHandler} = props
     const [text, setText] = useState('')
 
     console.log(`text is: ${JSON.stringify(text)}`)

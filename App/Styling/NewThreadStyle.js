@@ -17,14 +17,20 @@ const newThread = {
     fontSize: '1em',
   },
   subHeader: {
-    'text-align': 'center',
+    textAlign: 'center',
     fontSize: 22,
     paddingBottom: '2em',
   },
   buttons: {
-    'text-align': 'center',
-    'justify-content': "center",
-    'justify-self': "center"
+    textAlign: 'center',
+    justifyContent: "center",
+    justifySelf: "center"
+  },
+  topContainer: {
+    marginBottom: '1em'
+  },
+  checkBox: {
+    color: 'secondary'
   }
 
 
