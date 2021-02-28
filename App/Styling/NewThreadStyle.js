@@ -14,7 +14,7 @@ const newThread = {
     'background-color': 'rgba(0,50,46,0.85)',
     color: 'white',
     padding: '2em',
-    fontSize: 32,
+    fontSize: '1em',
   },
   subHeader: {
     'text-align': 'center',

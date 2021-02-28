@@ -1,6 +1,6 @@
 const TextEditorStyles = {
   CKEditor: {
-    backgroundColor: 'red'
+
   }
 }
 

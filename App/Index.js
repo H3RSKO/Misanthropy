@@ -20,7 +20,7 @@ const Index = (props) => {
   const [currentUser, setCurrentUser] = useState({loggedIn: false})
 
   if(user !== currentUser) setCurrentUser(user)
-  console.log(`Current user is: ${currentUser}`)
+  console.log(`Current user is: ${JSON.stringify(currentUser)}`)
 
   useEffect(() => {
     // checks cookie if there is a valid cookie and no user is loggedIn

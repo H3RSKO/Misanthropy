@@ -1,3 +1,6 @@
+.ck-editor__editable {
+  min-height: 35vh;
+}
 
 :root {
   /* Overrides the border radius setting in the theme. */
@@ -7,12 +10,12 @@
   --ck-font-size-base: 14px;
 
   /* Helper variables to avoid duplication in the colors. */
-  /* --ck-custom-background: hsl(270, 1%, 29%); */
-  /* --ck-custom-background:rgba(0,50,46,0.15); */
+  --ck-custom-background: hsl(270, 1%, 29%);
+  --ck-custom-background:rgba(0,50,46,0.15);
   --ck-custom-foreground: hsl(255, 3%, 18%);
   /* --ck-custom-border: hsl(300, 1%, 22%); */
   --ck-custom-border: #aeffffc5;
-  --ck-custom-white: hsl(0, 0%, 100%);
+  /* --ck-custom-white: hsl(0, 0%, 100%); */
   --ck-color-base-background: rgba(0,50,46,0.15)
 
   /* -- Overrides generic colors. ------------------------------------------------------------- */
@@ -49,8 +52,11 @@
 
   /* -- Overrides the default .ck-dropdown class colors. -------------------------------------- */
 
-  --ck-color-dropdown-panel-background: var(--ck-custom-background);
-  --ck-color-dropdown-panel-border: var(--ck-custom-foreground);
+  /* --ck-color-dropdown-panel-background: var(--ck-custom-background); */
+  --ck-color-dropdown-panel-background: rgba(0,50,46,0.85);
+  /* --ck-color-dropdown-panel-border: var(--ck-custom-foreground); */
+  --ck-color-dropdown-panel-border: #aeffffcb;
+  --ck-color-dropdown-panel-hover-background: hsl(255, 4%, 21%);
 
   /* -- Overrides the default .ck-splitbutton class colors. ----------------------------------- */
 
@@ -69,20 +75,25 @@
 
   /* -- Overrides the default .ck-labeled-field-view class colors. ---------------------------- */
 
-  --ck-color-labeled-field-label-background: var(--ck-custom-background);
+  --ck-color-labeled-field-label-background: hsl(255, 4%, 21%);
 
   /* -- Overrides the default .ck-list class colors. ------------------------------------------ */
 
   --ck-color-list-background: var(--ck-custom-background);
-  --ck-color-list-button-hover-background: var(--ck-color-base-foreground);
+  --ck-color-list-button-hover-background: hsl(255, 4%, 21%);
   --ck-color-list-button-on-background: var(--ck-color-base-active);
   --ck-color-list-button-on-background-focus: var(--ck-color-base-active-focus);
   --ck-color-list-button-on-text: var(--ck-color-base-background);
 
   /* -- Overrides the default .ck-balloon-panel class colors. --------------------------------- */
 
-  --ck-color-panel-background: var(--ck-custom-background);
-  --ck-color-panel-border: var(--ck-custom-border);
+  /* --ck-color-panel-background: var(--ck-custom-background);
+  --ck-color-panel-border: var(--ck-custom-border); */
+
+  --ck-color-panel-background: rgba(0,50,46,0.85);
+  --ck-color-panel-hover-background: rgba(0,50,46,0.85);
+
+  --ck-color-panel-border: #aeffffc5;
 
   /* -- Overrides the default .ck-toolbar class colors. --------------------------------------- */
 
@@ -103,7 +114,7 @@
 
   --ck-color-widget-blurred-border: hsl(0, 0%, 87%);
   --ck-color-widget-hover-border: hsl(43, 100%, 68%);
-  --ck-color-widget-editable-focus-background: var(--ck-custom-white);
+  --ck-color-widget-editable-focus-background: hsl(0, 0%, 20%);
 
   /* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */
 
