@@ -7,6 +7,7 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
+  Button
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import TextEditor from "../Components/TextEditor/TextEditor";
@@ -72,6 +73,11 @@ const NewThread = (props) => {
               </Grid>
             </Grid>
             <TextEditor textHandler={textHandler} />
+            <div className={classes.buttonContainer}>
+            <Button variant="contained" color="secondary">
+                  Create Thread
+            </Button>
+            </div>
           </Paper>
         </Box>
       </Grid>

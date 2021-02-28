@@ -31,6 +31,9 @@ const newThread = {
   },
   checkBox: {
     color: 'secondary'
+  },
+  buttonContainer: {
+    marginTop: '1em'
   }
 
 
