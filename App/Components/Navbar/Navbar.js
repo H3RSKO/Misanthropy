@@ -60,7 +60,7 @@ const Navbar = (props) => {
 // allow navbar to see user logged-in status
 const mapState = (state) => {
   return {
-    user: state.user,
+    user: state.users.user,
   };
 };
 

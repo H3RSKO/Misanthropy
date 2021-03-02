@@ -84,7 +84,7 @@
 <br>
 <br>
 
-Next: User homepage and posting threads/posts
+Next: Posting threads, then posts
 
 <h2> UX Highlights </h2>
 <br>

@@ -20,3 +20,5 @@ const Post = db.define('post', {
 })
 
 module.exports = Post
+
+// need to have an option to set as story continuation if post is in story thread and by thread OP

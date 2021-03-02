@@ -1,60 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { Grid } from "@material-ui/core";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import indexStyles from "../Styling/IndexStyle";
-import {connect} from 'react-redux';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import {checkUserCookie} from '../store/user'
-import Home from './Home'
-import Stories from './Stories'
-import ProfilePage from './ProfilePage'
-import {Signup, Login} from './AuthForm'
-import Navbar from "../Components/Navbar/Navbar"
 
-
-const Index = (props) => {
-  const { classes, user, checkUser } = props;
-  const [currentUser, setCurrentUser] = useState({loggedIn: false})
-
-  if(user) setCurrentUser(user)
-
-  useEffect(() => {
-    // checks cookie if there is a valid cookie and no user is loggedIn
-    if (document.cookie && !currentUser.loggedIn && document.cookie !== 'connect.sid=') {
-      const userChecker = async (cookie) => {
-        try {
-          await checkUser(cookie)
-        } catch(err) {console.log(err)}
-      }
-      // get plain sid
-      const cookieSID = document.cookie.split("=s%3A").pop()
-      userChecker(cookieSID)
-    }
-  }, [])
-
-  return (
-    <Grid container direction="row" justify="center" className={classes.container}>
-      <Navbar style={{"margin-bottom": "2em"}} />
-      <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/stories" component={Stories} />
-          <Route path="/profile" component={ProfilePage} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-      </Switch>
-    </Grid>
-  );
-};
-
-const mapState = (state) => {user: state.userName}
-
-const mapDispatch = (dispatch) => ({
-    checkUser: (cookie) => dispatch(checkUserCookie(cookie))
-})
-
-Index.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default connect(mapState, mapDispatch)(withStyles(indexStyles)(Index));
+export {default as Stories} from './Stories'
+export {default as ProfilePage} from './ProfilePage'
+export {Signup, Login} from './AuthForm'
+export {default as Home} from './Home'
+export {default as NewThread} from './NewThread'

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Index from "./Pages/Index";
+import Index from "./Index";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./Styling/AppStyle";
 import CssBaseline from "@material-ui/core/CssBaseline";

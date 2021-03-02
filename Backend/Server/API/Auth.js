@@ -16,28 +16,31 @@ const sessionStore = db.models.Session
 
 router.get('/me/:cookie', async (req, res) => {
   console.log(`in Auth api the session ID is ${req.sessionID}`)
-
+  try {
   if (req.sessionID) {
-    const userCookie = await sessionStore.findOne({
-      where: {
-        sid: req.sessionID
-      }
-    })
-   // pulls name from cookie data
-    // data is saved as a string to need to pull it manually
-    let userNameFromCookie = userCookie.data.split(":").pop()
-    userNameFromCookie = userNameFromCookie.substring(1, userNameFromCookie.length - 2)
 
-
-    console.log(`the userName is ${userNameFromCookie}`)
-    const user = await User.findOne({
-      where: {
-        userName: userNameFromCookie
-      }
+      const userCookie = await sessionStore.findOne({
+        where: {
+          sid: req.sessionID
+        }
       })
-    res.json(user)
-  } else {
-    console.log('no cookie')
-    res.status(401).send('No cookie')
-  }
+     // pulls name from cookie data
+     console.log(`user cookie is: ${userCookie}`)
+      // data is saved as a string to need to pull it manually
+      let userNameFromCookie = userCookie.data.split(":").pop()
+      userNameFromCookie = userNameFromCookie.substring(1, userNameFromCookie.length - 2)
+
+
+      console.log(`the userName is ${userNameFromCookie}`)
+      const user = await User.findOne({
+        where: {
+          userName: userNameFromCookie
+        }
+        })
+      res.json(user)
+    } else {
+      console.log('no cookie')
+      res.status(401).send('No cookie')
+    }
+    } catch(err) {console.log(err)}
 })

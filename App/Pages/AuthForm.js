@@ -133,18 +133,16 @@ const AuthForm = (props) => {
 const mapSignupState = (state) => {
   return {
     signup: true,
-    // users: state.users,
     user: state.user,
     error: state.error
-    // error: state.users.error,
   }
 }
 
 const mapLoginState = (state) => {
   return {
     signup: false,
-    user: state.user,
-    error: state.error,
+    user: state.users.user,
+    error: state.users.error,
     state
   }
 }

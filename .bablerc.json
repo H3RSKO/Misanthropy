@@ -2,8 +2,8 @@
   "presets": ["@babel/preset-react", ["@babel/preset-env",
     { "targets": { "esmodules": true } } ]],
   "plugins": [
-    ["@babel/plugin-transform-runtime", {
-       "regenerator": true
-    }]
+      ["@babel/plugin-transform-runtime", {
+        "regenerator": true
+     }]
   ]
 }

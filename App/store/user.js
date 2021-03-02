@@ -72,6 +72,7 @@ export const authenticateUser = (user) => async (dispatch) => {
 // check if user has cookie
 export const checkUserCookie = (cookie) => async (dispatch) => {
   try {
+    console.log(`in user store cookie is: ${cookie}`)
     const { data } = await axios.get(`/api/auth/me/${cookie}`)
     if (data) {
       return dispatch(getCookieUser({...data, loggedIn: true}))
