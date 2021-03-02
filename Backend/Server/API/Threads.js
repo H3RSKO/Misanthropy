@@ -13,7 +13,8 @@ router.get('/', async (req, res, next) => {
 // create thread
 router.post('/', async (req, res, next) => {
   try {
-    const post = await Thread.create(req.body)
+    console.log(`the thread data in api is: ${JSON.stringify(req.body)}`)
+    const post = await Thread.create(req.body.thread)
     res.json(post)
   } catch(err) {next(err)}
 })

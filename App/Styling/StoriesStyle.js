@@ -22,6 +22,12 @@ const storiesStyle = {
   link: {
     textDecoration: 'none',
     color: '#aeffff'
+  },
+  threads: {
+    flexDirection: 'row',
+    padding: '0em',
+    margin: '0em',
+    color: 'white'
   }
 }
 

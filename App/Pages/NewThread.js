@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Paper,
   TextField,
@@ -10,13 +10,22 @@ import {
   Button
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import {connect} from 'react-redux';
+
 import TextEditor from "../Components/TextEditor/TextEditor";
 import NewThreadStyles from "../Styling/NewThreadStyle";
+import {createThreads} from "../store/threads"
 
 const NewThread = (props) => {
-  const { classes } = props;
-  const [thread, setThread] = useState({ title: "", text: "", story: false });
+  const { classes, user, createThread } = props;
+  const [thread, setThread] = useState({ title: "", text: "", story: false, userId: '' });
 
+  useEffect(() => {
+    setThread({...thread, userId: user.id})
+  }, [])
+
+
+  console.log(`the user is: ${JSON.stringify(user)}`)
   // callback that is passed to TextEditor that controls all text before hitting backend
   const textHandler = (event) => {
     if (event.target.name === "story") {
@@ -25,6 +34,11 @@ const NewThread = (props) => {
       setThread({ ...thread, [event.target.name]: event.target.value });
     }
   };
+
+  // submits new thread
+  const threadSubmitter = () => {
+    createThread({thread})
+  }
 
   console.log(`the thread is: ${JSON.stringify(thread)}`);
 
@@ -74,7 +88,7 @@ const NewThread = (props) => {
             </Grid>
             <TextEditor textHandler={textHandler} />
             <div className={classes.buttonContainer}>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" onClick={threadSubmitter}>
                   Create Thread
             </Button>
             </div>
@@ -85,4 +99,14 @@ const NewThread = (props) => {
   );
 };
 
-export default withStyles(NewThreadStyles)(NewThread);
+const mapDispatchCreateThreads = (dispatch) => ({
+  createThread: (thread) => dispatch(createThreads(thread))
+})
+
+const mapState = (state) => {
+  return {
+    user: state.users.user
+  }
+}
+
+export default connect(mapState, mapDispatchCreateThreads)(withStyles(NewThreadStyles)(NewThread));

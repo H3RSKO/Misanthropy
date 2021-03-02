@@ -18,10 +18,19 @@ const addThread = (thread) => ({
 // Thunks
 export const fetchThreads = () => async (dispatch) => {
   try {
-    console.log(`we are in the thunk`)
     const {data} = await axios.get('/api/threads')
     console.log(`the threads data is ${data}`)
     return dispatch(getThreads(data))
+  } catch(err) {console.log(err)}
+}
+
+// when posting new thread, need to split off initial text post as first post in thread
+export const createThreads = (thread) => async (dispatch) => {
+  try {
+    console.log(`we are in the thunk`)
+    const {data} = await axios.post('/api/threads', thread)
+    console.log(`the new thread is ${data}`)
+    return dispatch(addThread(data))
   } catch(err) {console.log(err)}
 }
 

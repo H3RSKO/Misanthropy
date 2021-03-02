@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Paper, Button, Grid, Box } from "@material-ui/core";
+import { Paper, Button, Grid, Box, Card, CardContent, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ const Stories = (props) => {
     loadThreads()
   }, [])
 
-
+  console.log(JSON.stringify(threads))
 
   return (
     <Grid container direction="row" justify="center">
@@ -34,10 +34,17 @@ const Stories = (props) => {
                 </Link>
               </Button>}
             {threads && threads.threads.map((thread) => (
-              <div key={thread.id}>
-                {thread.title}
+              <Card key={thread.id} className={classes.threads}>
                 {/* need to make this link to a page just for the thread  */}
-              </div>
+                <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {thread.title}
+                  </Typography>
+                  Thread Views: {thread.views}
+                  Thread Upvotes: {thread.upvotes}
+                  {/* add author name */}
+                </CardContent>
+              </Card>
             ))}
           </Paper>
         </Box>
