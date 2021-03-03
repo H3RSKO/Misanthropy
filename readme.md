@@ -69,22 +69,21 @@
 [🚀] Add React Router and create page navigation<br>
 [🚀] Add Redux and setup global store<br>
 [🚀] Create User store<br>
-[ ] Create Thread store<br>
+[🚀] Create Thread store<br>
 [ ] Create Post store<br>
 [🚀] Add Redux-Thunks<br>
 [🚀] Add User Thunks to get all users and create new users<br>
-[ ] Add Thread Thunks to get all threads and create new threads<br>
+[🚀] Add Thread Thunks to get all threads and create new threads<br>
 [ ] Add Post Thunks to get all posts and create new posts<br>
 [🚀] Complete new user signup process<br>
 [🚀] Complete user login process<br>
 [🚀] Create Navbar<br>
-[ ] Create Stories/Thread frontend<br>
+[🚀] Create Stories/Thread frontend<br>
 [ ] Create Post frontend<br>
 </div>
 <br>
 <br>
 
-Next: Posting threads, then posts
 
 <h2> UX Highlights </h2>
 <br>
