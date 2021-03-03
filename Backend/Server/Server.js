@@ -6,6 +6,8 @@ const path = require('path');
 const history = require('connect-history-api-fallback')
 const db = require('../Database')
 const session = require('express-session')
+const compression = require('compression')
+const helmet = require("helmet");
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const sessionStore = new SequelizeStore({
   db: db,
@@ -19,6 +21,8 @@ const sessionStore = new SequelizeStore({
 const createApp = () => {
   app.use(express.static('public'))
   app.use(express.urlencoded({extended: true}))
+  app.use(compression())
+  app.use(helmet())
 }
 // user session
 app.use(session({
