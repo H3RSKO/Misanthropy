@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import TextEditorStyles from './TextEditorStyles'
 import { withStyles } from "@material-ui/core/styles";
 import './TextEditorStyles.css'
+import threads from '../../store/threads';
 
 const TextEditor = (props) => {
-  const {textHandler} = props
+  const {setThread, thread} = props
     const [text, setText] = useState('')
+
+    useEffect(() => {
+      setThread({...thread, text: text})
+    }, [text])
 
     console.log(`text is: ${JSON.stringify(text)}`)
     const {classes} = props

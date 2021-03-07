@@ -37,7 +37,7 @@ const NewThread = (props) => {
 
   // submits new thread
   const threadSubmitter = () => {
-    createThread({thread})
+    createThread(thread)
   }
 
   console.log(`the thread is: ${JSON.stringify(thread)}`);
@@ -86,7 +86,7 @@ const NewThread = (props) => {
                 />
               </Grid>
             </Grid>
-            <TextEditor textHandler={textHandler} />
+            <TextEditor setThread={setThread} thread={thread}/>
             <div className={classes.buttonContainer}>
             <Button variant="contained" color="secondary" onClick={threadSubmitter}>
                   Create Thread

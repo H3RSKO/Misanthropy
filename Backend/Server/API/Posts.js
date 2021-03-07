@@ -8,3 +8,11 @@ router.get('/', async (req, res, next) => {
     res.json(posts)
   } catch(err) {next(err)}
 })
+
+router.post('/:threadId', async (req, res, next) => {
+  try {
+    console.log(`the post data in api is: ${JSON.stringify(req.body)}`)
+    const post = await Post.create(req.body)
+    res.json(post)
+  } catch(err) {next(err)}
+})

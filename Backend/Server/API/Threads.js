@@ -14,8 +14,8 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     console.log(`the thread data in api is: ${JSON.stringify(req.body)}`)
-    const post = await Thread.create(req.body.thread)
-    res.json(post)
+    const thread = await Thread.create(req.body)
+    res.json(thread)
   } catch(err) {next(err)}
 })
 
