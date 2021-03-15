@@ -9,6 +9,21 @@ router.get('/', async (req, res, next) => {
   } catch(err) {next(err)}
 })
 
+router.get('/:threadId', async (req, res, next) => {
+  try {
+    const posts = await Post.findAll({
+      where: {
+        threadId: req.params.threadId
+      },
+      order: [
+        ['id', 'ASC'],
+    ],
+    })
+    console.log("in Posts API posts are: ", posts)
+    res.json(posts)
+  } catch(err) {next(err)}
+})
+
 router.post('/:threadId', async (req, res, next) => {
   try {
     console.log(`the post data in api is: ${JSON.stringify(req.body)}`)

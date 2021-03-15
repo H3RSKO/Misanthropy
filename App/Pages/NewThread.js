@@ -25,7 +25,6 @@ const NewThread = (props) => {
   }, [])
 
 
-  console.log(`the user is: ${JSON.stringify(user)}`)
   // callback that is passed to TextEditor that controls all text before hitting backend
   const textHandler = (event) => {
     if (event.target.name === "story") {

@@ -42,7 +42,7 @@ export default function (state = {threads: []}, action) {
     case GET_ALL_THREADS:
       return {...state, threads: action.threads}
     case ADD_THREAD:
-      return {...state, threads: action.thread}
+      return {...state, threads: threads.push(action.thread)}
     default:
       return state
   }

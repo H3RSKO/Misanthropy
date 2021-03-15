@@ -32,6 +32,7 @@
     "connect-history-api-fallback": "^1.6.0",
     "connect-session-sequelize": "^7.0.4",
     "crypto-js": "^4.0.0",
+    "dompurify": "^2.2.7",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "helmet": "^4.4.1",
