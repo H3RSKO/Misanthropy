@@ -12,7 +12,6 @@ const authFormStyles = {
     fontSize: 32,
   },
   paper: {
-
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

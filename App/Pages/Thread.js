@@ -26,6 +26,7 @@ const Thread = (props) => {
   }, [])
 
   const createMarkup = (html) => {
+    html = html.replace(/<a /g, '<a style="color: green;"')
     return  {
       __html: DOMPurify.sanitize(html)
     }

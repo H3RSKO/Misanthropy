@@ -6,7 +6,16 @@ const threadStyle = {
     fontSize: '1em',
   },
   postText: {
-    color: 'white'
+    color: 'white',
+    // a: {
+    //   color: 'green',
+    //   '&:hover' : {
+    //     color: 'yellow'
+    //   }
+    // }
+    'a&link': {
+      color: "red"
+    }
   }
 }
 

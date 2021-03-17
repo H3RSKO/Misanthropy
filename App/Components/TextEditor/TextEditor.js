@@ -14,7 +14,6 @@ const TextEditor = (props) => {
       setThread({...thread, text: text})
     }, [text])
 
-    console.log(`text is: ${JSON.stringify(text)}`)
     const {classes} = props
         return (
             <div className="App">
