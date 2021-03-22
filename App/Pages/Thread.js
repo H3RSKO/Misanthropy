@@ -26,7 +26,7 @@ const Thread = (props) => {
   }, [])
 
   const createMarkup = (html) => {
-    html = html.replace(/<a /g, '<a style="color: green;"')
+    html = `<style>a {color:green;}</style>` + html
     return  {
       __html: DOMPurify.sanitize(html)
     }
@@ -41,9 +41,9 @@ const Thread = (props) => {
             className={classes.root}
             variant="outlined"
           >
-      <Box>
-      {console.log("currentposts is: >> ", currentPosts)}
-
+      <Box style={{display: 'grid'}}>
+      <Button style={{justifySelf: 'flex-end'}}>Reply to Thread</Button>
+      {users && users.user.loggedIn && (<Button>Reply to Thread</Button>)}
         {/* need to be able to pull current thread */}
         {currentPosts && currentPosts.posts.map(p => (
           <Card key={p.id}>
