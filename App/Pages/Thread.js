@@ -10,7 +10,7 @@ import DOMPurify from 'dompurify';
 const Thread = (props) => {
   const {getPosts, posts, users, classes} = props
   const threadId = props.match.params.threadId
-
+  console.log(props)
   const [currentPosts, setCurrentPosts] = useState()
 
   console.log("thread props are: ", props)
