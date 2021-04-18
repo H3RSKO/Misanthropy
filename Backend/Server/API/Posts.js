@@ -19,7 +19,6 @@ router.get('/:threadId', async (req, res, next) => {
         ['id', 'ASC'],
     ],
     })
-    console.log("in Posts API posts are: ", posts)
     res.json(posts)
   } catch(err) {next(err)}
 })

@@ -5,17 +5,12 @@ const threadStyle = {
     padding: '2em',
     fontSize: '1em',
   },
+  userInfo: {
+    // opacity: 0.5,
+  },
   postText: {
     color: 'white',
-    // a: {
-    //   color: 'green',
-    //   '&:hover' : {
-    //     color: 'yellow'
-    //   }
-    // }
-    'a&link': {
-      color: "red"
-    }
+    // background: "rgba(76, 175, 80, 0.03)"
   }
 }
 

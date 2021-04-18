@@ -20,6 +20,18 @@ router.post('/', async (req, res, next) => {
   } catch(err) {next(err)}
 })
 
+// get specific thread info
+router.get('/:threadId', async (req, res, next) => {
+  try {
+    console.log('reached thread info in backend')
+    const thread = await Thread.findOne({
+      where: {
+        id: req.params.threadId
+      }
+    })
+    res.json(thread)
+  } catch(err) {next(err)}
+})
 // add:
 //  get all threads that are stories
 //  get all threads from specific author
