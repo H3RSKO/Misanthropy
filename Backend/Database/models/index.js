@@ -4,6 +4,7 @@ const Thread = require('./thread')
 
 User.hasMany(Post)
 Post.belongsTo(User)
+Thread.belongsTo(User)
 
 User.hasMany(Thread)
 Thread.hasMany(Post)

@@ -57,7 +57,6 @@ const Thread = (props) => {
           </Typography>
           <Box style={{ display: "grid" }}>
             {/* need to be able to pull current thread */}
-            {console.log(props)}
             {currentPosts &&
               currentPosts.posts.map((p) => (
                 <Card key={p.id}>

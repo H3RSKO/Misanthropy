@@ -24,11 +24,7 @@ router.post('/', async (req, res, next) => {
 router.get('/:threadId', async (req, res, next) => {
   try {
     console.log('reached thread info in backend')
-    const thread = await Thread.findOne({
-      where: {
-        id: req.params.threadId
-      }
-    })
+    const thread = await Thread.findByPk(req.params.threadId)
     res.json(thread)
   } catch(err) {next(err)}
 })
