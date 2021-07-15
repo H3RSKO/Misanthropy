@@ -12,11 +12,11 @@ import postHandlerStyle from "./postHandlerStyle";
 
 
 const PostHandler = (props) => {
-  let {replyingTo} = props
+  let {replyingTo, classes} = props
 
   return (
-      <div>
-        TEST
+      <div className={classes.postHandlerContainer}>
+        Buttons to reply etc... will go here.
       </div>
    )
 }

@@ -15,6 +15,7 @@ import { fetchPosts } from "../store/posts";
 import { getThreadInfo } from "../store/threads"
 import DOMPurify from "dompurify";
 import PostHandler from '../Components/PostHandler/PostHandler'
+import Post from "../Components/Post/Post";
 
 const Thread = (props) => {
   const { getPosts, posts, users, classes, getThread } = props;
@@ -36,12 +37,12 @@ const Thread = (props) => {
     loadPostsAndThreadInfo();
   }, []);
 
-  const createMarkup = (html) => {
-    html = html.replace(/<a /g, '<a style="color: green;"');
-    return {
-      __html: DOMPurify.sanitize(html),
-    };
-  };
+  // const createMarkup = (html) => {
+  //   html = html.replace(/<a /g, '<a style="color: green;"');
+  //   return {
+  //     __html: DOMPurify.sanitize(html),
+  //   };
+  // };
 
   return (
     <Grid container direction="row" justify="center">
@@ -53,36 +54,17 @@ const Thread = (props) => {
           variant="outlined"
         >
           <Typography type="h1">
-            {}
+            {currentPosts && console.log(currentPosts.posts)}
+            <Button onClick={PostHandler} style={{justifySelf: 'flex-end'}}>Reply to Thread</Button>
           </Typography>
           <Box style={{ display: "grid" }}>
             {/* need to be able to pull current thread */}
             {currentPosts &&
-              currentPosts.posts.map((p) => (
-                <Card key={p.id}>
-                  <Grid container spacing={1} justify="spaceBetween" className={classes.userInfo}>
-                  {console.log("p is: >> ", p)}
-                  <Grid item xs={3}>
-                    Poster info
-                  </Grid>
-                  <Grid container xs={9} className={classes.postText}>
-                  <CardContent>
-                    <Typography
-                      // className={classes.postText}
-                      dangerouslySetInnerHTML={createMarkup(p.text)}
-                    >
-                      {/* <div dangerouslySetInnerHTML={createMarkup(p.text)}>
-            </div> */}
-                    </Typography>
-                    <PostHandler />
-                  </CardContent>
-                  </Grid>
-                  {/* need to add user name and style post */}
-                  {/* {p.userId} */}
-                  </Grid>
-                </Card>
-              ))}
-            {/* <Button onClick={PostHandler} style={{justifySelf: 'flex-end'}}>Reply to Thread</Button> */}
+               currentPosts.posts.map((p) => (
+                <div className={classes.postComtainer}>
+                  <Post p={p} />
+                </div>
+               ))}
           </Box>
         </Paper>
       </Grid>

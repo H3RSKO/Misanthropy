@@ -8,9 +8,8 @@ const threadStyle = {
   userInfo: {
     // opacity: 0.5,
   },
-  postText: {
-    color: 'white',
-    // background: "rgba(76, 175, 80, 0.03)"
+  postComtainer: {
+    margin: '0.5em',
   }
 }
 
