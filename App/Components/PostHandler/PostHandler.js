@@ -9,20 +9,44 @@ import React, { useEffect, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import postHandlerStyle from "./postHandlerStyle";
+import TextEditor from "../TextEditor/TextEditor";
+import { Button, Grid } from "@material-ui/core";
+import { makePosts } from "../../store/posts";
 
 
-const PostHandler = (props) => {
-  let {replyingTo, classes} = props
+
+
+const PostHandler = ({classes, setReplyHandler, makePost, threadId, postId, user }) => {
+  const [postHandler, setPostHandler] = useState({ title: "", text: "", story: false, userId: '' });
+  const submitPost = () => {
+    const post = {
+      replyTo: postId ? postId : null,
+      threadId: threadId,
+      text: postHandler.text,
+      userId: user.id,
+      userName: user.userName
+    };
+    makePost(threadId, post);
+    window.location.reload();  }
 
   return (
-      <div className={classes.postHandlerContainer}>
-        Buttons to reply etc... will go here.
-      </div>
-   )
-}
+    <Grid container direction="column">
+      <TextEditor setPostHandler={setPostHandler} />
+      Buttons to reply etc... will go here.
+      <Grid item className={classes.postHandlerContainer}>
+        <Button onClick={submitPost}>Submit</Button>
+      </Grid>
+    </Grid>
+  );
+};
 
 const mapState = (state) => ({
-  user: state.users.user
-})
+  user: state.users.user,
+});
 
-export default connect(mapState, null)(withStyles(postHandlerStyle)(PostHandler));
+const mapDispatch = (dispatch) => ({
+  makePost: (threadId, post) => dispatch(makePosts(threadId, post)),
+});
+
+export default connect(mapState, mapDispatch)(withStyles(postHandlerStyle)(PostHandler));
+

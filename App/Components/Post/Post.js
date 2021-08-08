@@ -19,14 +19,14 @@ const createMarkup = (html) => {
   };
 };
 
-const Post = ({ p, classes }) => {
+const Post = ({ p, classes}) => {
   console.log({ p });
   return (
     <Card key={p.id} style={{display: "grid"}}>
       <Grid
         container
         spacing={1}
-        justify="spaceBetween"
+        // justify="spaceBetween"
         direction="row"
         className={classes.userInfo}
       >
@@ -38,7 +38,7 @@ const Post = ({ p, classes }) => {
             {p.user.userName}
           </Grid>
         </Grid>
-        <Grid container xs={9} className={classes.postTextContainer}>
+        <Grid container className={classes.postTextContainer}>
           <CardContent className={classes.postText}>
             <Typography
               // className={classes.postText}
@@ -48,7 +48,7 @@ const Post = ({ p, classes }) => {
           </CardContent>
         </Grid>
       </Grid>
-            <PostHandler />
+            {/* <PostHandler /> */}
     </Card>
   );
 };

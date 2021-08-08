@@ -15,31 +15,29 @@ import {connect} from 'react-redux';
 import TextEditor from "../Components/TextEditor/TextEditor";
 import NewThreadStyles from "../Styling/NewThreadStyle";
 import {createThreads} from "../store/threads"
+import { makePosts } from "../store/posts";
 
-const NewThread = (props) => {
-  const { classes, user, createThread } = props;
-  const [thread, setThread] = useState({ title: "", text: "", story: false, userId: '' });
+const NewThread = ({ classes, user, createThread }) => {
+  const [postHandler, setPostHandler] = useState({ title: "", text: "", story: false, userId: '' });
 
   useEffect(() => {
-    setThread({...thread, userId: user.id})
+    setPostHandler({...postHandler, userId: user.id})
   }, [])
 
 
   // callback that is passed to TextEditor that controls all text before hitting backend
   const textHandler = (event) => {
     if (event.target.name === "story") {
-      setThread({ ...thread, [event.target.name]: event.target.checked });
+      setPostHandler({ ...postHandler, [event.target.name]: event.target.checked });
     } else {
-      setThread({ ...thread, [event.target.name]: event.target.value });
+      setPostHandler({ ...postHandler, [event.target.name]: event.target.value });
     }
   };
 
   // submits new thread
   const threadSubmitter = () => {
-    createThread(thread)
+    createThread(postHandler)
   }
-
-  console.log(`the thread is: ${JSON.stringify(thread)}`);
 
   return (
     <Grid container direction="row" justify="center">
@@ -67,7 +65,7 @@ const NewThread = (props) => {
                   type="title"
                   id="title"
                   onChange={textHandler}
-                  value={thread.title}
+                  value={postHandler.title}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -75,7 +73,7 @@ const NewThread = (props) => {
                   control={
                     <Checkbox
                       className={classes.checkBox}
-                      checked={thread.story}
+                      checked={postHandler.story}
                       onChange={textHandler}
                       name="story"
                       color="secondary"
@@ -85,7 +83,7 @@ const NewThread = (props) => {
                 />
               </Grid>
             </Grid>
-            <TextEditor setThread={setThread} thread={thread}/>
+            <TextEditor setPostHandler={setPostHandler} postHandler={postHandler}/>
             <div className={classes.buttonContainer}>
             <Button variant="contained" color="secondary" onClick={threadSubmitter}>
                   Create Thread
@@ -97,7 +95,6 @@ const NewThread = (props) => {
     </Grid>
   );
 };
-
 const mapDispatchCreateThreads = (dispatch) => ({
   createThread: (thread) => dispatch(createThreads(thread))
 })

@@ -24,7 +24,12 @@ export const fetchPosts = (threadId) => async (dispatch) => {
   } catch(err) {console.log(err)}
 }
 
-// need to add create post thunk
+export const makePosts = (threadId, post) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`/api/posts/${threadId}`, post)
+    return dispatch(createPost(data))
+  } catch(err) {console.log(err)}
+}
 
 // reducer
 export default function (state = {posts: []}, action) {

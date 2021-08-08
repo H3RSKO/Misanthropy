@@ -21,8 +21,6 @@ const Stories = (props) => {
     loadThreads()
   }, [])
 
-  console.log(JSON.stringify(threads))
-
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs={10}>

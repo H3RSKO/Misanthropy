@@ -10,6 +10,8 @@ const threadStyle = {
   },
   postComtainer: {
     margin: '0.5em',
+    Wodth: '100%',
+    display: 'grid'
   }
 }
 

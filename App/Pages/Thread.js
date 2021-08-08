@@ -11,38 +11,62 @@ import {
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import threadStyle from "../Styling/ThreadStyle";
-import { fetchPosts } from "../store/posts";
-import { getThreadInfo } from "../store/threads"
+import { fetchPosts, makePosts } from "../store/posts";
+import { getThreadInfo } from "../store/threads";
+import TextEditor from "../Components/TextEditor/TextEditor";
 import DOMPurify from "dompurify";
-import PostHandler from '../Components/PostHandler/PostHandler'
+import PostHandler from "../Components/PostHandler/PostHandler";
 import Post from "../Components/Post/Post";
 
-const Thread = (props) => {
-  const { getPosts, posts, users, classes, getThread } = props;
-  const threadId = props.match.params.threadId;
-  console.log(props);
-  const [currentPosts, setCurrentPosts] = useState();
+// to reply add the thread or post id to the replyHandler
+// when the reply handler isn't false, it displays the textEditor
 
-  console.log("thread props are: ", props);
-  console.log("thread ID is: ", threadId);
+const Thread = ({
+  getPosts,
+  posts,
+  users,
+  classes,
+  getThread,
+  makePost,
+  match,
+}) => {
+  const threadId = match.params.threadId;
+  const [currentPosts, setCurrentPosts] = useState();
+  const [replyHandler, setReplyHandler] = useState(false);
 
   useEffect(() => {
     const loadPostsAndThreadInfo = async () => {
       const posts = await getPosts(threadId);
-      const threadInfo = await getThread(threadId)
-      console.log("posts are: ", posts);
-      console.log("threadInfo is: ", threadInfo);
+      const threadInfo = await getThread(threadId);
+      console.log("threadInfo >> ", threadInfo.thread);
       setCurrentPosts(posts);
     };
     loadPostsAndThreadInfo();
   }, []);
 
+  // const submitPost = () => {
+  //   console.log('submitPost >> ', newPost);
+  //   const post = {
+  //     threadId: threadId,
+  //     content: newPost.content,
+  //     userId: users.user.id,
+  //     userName: users.user.name
+  //   };
+  //   makePost(threadId, post);
+  //   setNewPost(false);
+  // }
   // const createMarkup = (html) => {
   //   html = html.replace(/<a /g, '<a style="color: green;"');
   //   return {
   //     __html: DOMPurify.sanitize(html),
   //   };
   // };
+
+  // finish tie in between post thunks and here
+
+  const TextComponent = ({ threadId, postId }) => (
+    <PostHandler threadId={threadId} postId={postId} />
+  );
 
   return (
     <Grid container direction="row" justify="center">
@@ -54,18 +78,34 @@ const Thread = (props) => {
           variant="outlined"
         >
           <Typography type="h1">
-            {currentPosts && console.log(currentPosts.posts)}
-            <Button onClick={PostHandler} style={{justifySelf: 'flex-end'}}>Reply to Thread</Button>
+            <Button
+              onClick={() => setReplyHandler({ type: "thread", id: threadId })}
+              style={{ justifySelf: "flex-end" }}
+            >
+              Reply to Thread
+            </Button>
           </Typography>
           <Box style={{ display: "grid" }}>
-            {/* need to be able to pull current thread */}
             {currentPosts &&
-               currentPosts.posts.map((p) => (
-                <div className={classes.postComtainer}>
+              currentPosts.posts.map((p) => (
+                <div className={classes.postComtainer} key={p.id}>
                   <Post p={p} />
+                  {replyHandler &&
+                    replyHandler.type === "post" &&
+                    replyHandler.id === p.id && (
+                      <PostHandler threadId={threadId} postId={p.id} />
+                    )}
+                  <Button
+                    onClick={() => setReplyHandler({ type: "post", id: p.id })}
+                    style={{ justifySelf: "flex-end" }}
+                  >
+                    Reply to Post
+                  </Button>
                 </div>
-               ))}
+              ))}
           </Box>
+          {replyHandler &&
+            replyHandler.type === "thread" && <PostHandler threadId={threadId} />}
         </Paper>
       </Grid>
     </Grid>
@@ -76,12 +116,13 @@ const Thread = (props) => {
 const mapState = (state) => ({
   user: state.users.user,
   posts: state.posts.posts,
-  thread: state.threads.thread
+  thread: state.threads.thread,
 });
 
 const mapDispatch = (dispatch) => ({
   getPosts: (threadId) => dispatch(fetchPosts(threadId)),
-  getThread: (threadId) => dispatch(getThreadInfo(threadId))
+  makePost: (threadId, post) => dispatch(makePosts(threadId, post)),
+  getThread: (threadId) => dispatch(getThreadInfo(threadId)),
 });
 
 export default connect(mapState, mapDispatch)(withStyles(threadStyle)(Thread));

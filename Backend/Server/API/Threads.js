@@ -14,7 +14,6 @@ router.get('/', async (req, res, next) => {
 // create thread
 router.post('/', async (req, res, next) => {
   try {
-    console.log(`the thread data in api is: ${JSON.stringify(req.body)}`)
     const thread = await Thread.create(req.body)
     res.json(thread)
   } catch(err) {next(err)}
@@ -23,7 +22,6 @@ router.post('/', async (req, res, next) => {
 // get specific thread info
 router.get('/:threadId', async (req, res, next) => {
   try {
-    console.log('reached thread info in backend')
     const thread = await Thread.findByPk(req.params.threadId)
     res.json(thread)
   } catch(err) {next(err)}

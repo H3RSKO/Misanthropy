@@ -5,16 +5,15 @@ import TextEditorStyles from './TextEditorStyles'
 import { withStyles } from "@material-ui/core/styles";
 import './TextEditorStyles.css'
 import threads from '../../store/threads';
+import { connect } from "react-redux";
 
-const TextEditor = (props) => {
-  const {setThread, thread} = props
+const TextEditor = ({setPostHandler, postHandler, classes, id}) => {
     const [text, setText] = useState('')
 
     useEffect(() => {
-      setThread({...thread, text: text})
+        setPostHandler({...postHandler, text: text})
     }, [text])
 
-    const {classes} = props
         return (
             <div className="App">
                 <CKEditor
@@ -40,4 +39,14 @@ const TextEditor = (props) => {
         );
 }
 
-export default withStyles(TextEditorStyles)(TextEditor);
+const mapDispatchCreateThreads = (dispatch) => ({
+    createThread: (post) => dispatch(createThreads(post))
+  })
+
+const mapState = (state) => {
+    return {
+      user: state.users.user
+    }
+  }
+
+export default connect(mapState, mapDispatchCreateThreads)(withStyles(TextEditorStyles)(TextEditor))
