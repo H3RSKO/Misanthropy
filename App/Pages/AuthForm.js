@@ -133,7 +133,7 @@ const AuthForm = (props) => {
 const mapSignupState = (state) => {
   return {
     signup: true,
-    user: state.user,
+    user: state.users.user,
     error: state.error
   }
 }

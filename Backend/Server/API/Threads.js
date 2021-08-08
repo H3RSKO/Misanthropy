@@ -10,15 +10,22 @@ router.get('/', async (req, res, next) => {
   } catch(err) {next(err)}
 })
 
+
 // create thread
 router.post('/', async (req, res, next) => {
   try {
-    console.log(`the thread data in api is: ${JSON.stringify(req.body)}`)
-    const post = await Thread.create(req.body.thread)
-    res.json(post)
+    const thread = await Thread.create(req.body)
+    res.json(thread)
   } catch(err) {next(err)}
 })
 
+// get specific thread info
+router.get('/:threadId', async (req, res, next) => {
+  try {
+    const thread = await Thread.findByPk(req.params.threadId)
+    res.json(thread)
+  } catch(err) {next(err)}
+})
 // add:
 //  get all threads that are stories
 //  get all threads from specific author

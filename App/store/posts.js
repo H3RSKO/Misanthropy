@@ -16,10 +16,29 @@ const createPost = (post) => ({
 })
 
 // Thunks
-export const fetchPosts = () => async (dispatch) => {
+export const fetchPosts = (threadId) => async (dispatch) => {
   try {
-    // need to do
-    const { data } = axios.get('/api/posts/:thread')
-
+    const { data } = await axios.get(`/api/posts/${threadId}`)
+    console.log("in post thunk data is: ", data)
+    return dispatch(getAllPosts(data))
   } catch(err) {console.log(err)}
+}
+
+export const makePosts = (threadId, post) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`/api/posts/${threadId}`, post)
+    return dispatch(createPost(data))
+  } catch(err) {console.log(err)}
+}
+
+// reducer
+export default function (state = {posts: []}, action) {
+  switch (action.type) {
+    case GET_ALL_POSTS:
+      return {...state, posts: action.posts}
+    case CREATE_POST:
+      return {...state, posts: action.post}
+    default:
+      return state
+  }
 }

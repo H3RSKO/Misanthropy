@@ -19,7 +19,7 @@ const storiesStyle = {
     'justify-content': "center",
     'justify-self': "center"
   },
-  link: {
+  newThreadLink: {
     textDecoration: 'none',
     color: '#aeffff'
   },
@@ -28,6 +28,9 @@ const storiesStyle = {
     padding: '0em',
     margin: '0em',
     color: 'white'
+  },
+  threadLink: {
+    color: '#aeffff'
   }
 }
 

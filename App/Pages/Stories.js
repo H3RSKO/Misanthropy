@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import storiesStyle from "../Styling/StoriesStyle";
 import {fetchThreads} from '../store'
-import user from "../store/user";
+// import {user} from "../store/user";
 
 const Stories = (props) => {
   const { classes, getThreads, threads, user } = props;
@@ -21,21 +21,19 @@ const Stories = (props) => {
     loadThreads()
   }, [])
 
-  console.log(JSON.stringify(threads))
-
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs={10}>
         <Box className={classes.borderBox} border={3}>
           <Paper elevation={3} square={true} className={classes.root}>
             {user.loggedIn && <Button>
-              <Link to='/newthread' className={classes.link}>
+              <Link to='/newthread' className={classes.newThreadLink}>
                 New Thread
                 </Link>
               </Button>}
             {threads && threads.threads.map((thread) => (
               <Card key={thread.id} className={classes.threads}>
-                {/* need to make this link to a page just for the thread  */}
+                <Link to={`/threads/${thread.id}`} className={classes.threadLink}>
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {thread.title}
@@ -44,6 +42,8 @@ const Stories = (props) => {
                   Thread Upvotes: {thread.upvotes}
                   {/* add author name */}
                 </CardContent>
+                </Link>
+
               </Card>
             ))}
           </Paper>

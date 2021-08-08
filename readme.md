@@ -20,6 +20,7 @@
   <li>Redux-Thunks</li>
   <li>Material UI</li>
   <li>Babel</li>
+  <li>ckeditor5</li>
 </ul>
 
 <h4>Back End:</h4>
@@ -107,5 +108,3 @@
 <h5>* If you are thread's author, add edit thread button</h5>
 <h5>* If you are post's author, add edit post button</h5>
 </div>
-
-
