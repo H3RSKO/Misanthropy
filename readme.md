@@ -53,8 +53,8 @@
 [🛸] Create DB and DB Tables for Users, Threads and Posts<br>
 [🛸] Set up API routes for getting all users, all posts, and all threads<br>
 [🛸] Set up User API routes to add new users<br>
-[ ] Set up Thread API routes to create new threads<br>
-[ ] Set up Post API routes to create new posts<br>
+[🛸] Set up Thread API routes to create new threads<br>
+[🛸] Set up Post API routes to create new posts<br>
 [🛸] Set up User password cryptography and authentication functionality<br>
 [🛸] Set up DB seed file to quickly automated DB entries for testing<br>
 [🛸] Set up Google Cloud bucket to store Forum images<br>
@@ -70,16 +70,16 @@
 [🚀] Add Redux and setup global store<br>
 [🚀] Create User store<br>
 [🚀] Create Thread store<br>
-[ ] Create Post store<br>
+[🚀] Create Post store<br>
 [🚀] Add Redux-Thunks<br>
 [🚀] Add User Thunks to get all users and create new users<br>
 [🚀] Add Thread Thunks to get all threads and create new threads<br>
-[ ] Add Post Thunks to get all posts and create new posts<br>
+[🚀] Add Post Thunks to get all posts and create new posts<br>
 [🚀] Complete new user signup process<br>
 [🚀] Complete user login process<br>
 [🚀] Create Navbar<br>
 [🚀] Create Stories/Thread frontend<br>
-[ ] Create Post frontend<br>
+[🚀] Create Post frontend<br>
 </div>
 <br>
 <br>
