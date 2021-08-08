@@ -11,6 +11,7 @@ ProfilePage,
 Signup,
 Login,
 NewThread,
+Thread,
 Home} from './Pages/Index'
 import Navbar from "./Components/Navbar/Navbar"
 
@@ -45,6 +46,7 @@ const Index = (props) => {
           <Route path="/profile" component={ProfilePage} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route exact path="/threads/:threadId" component={Thread} />
           {loggedIn &&
             <Route path="/newthread" component={NewThread} />
           }

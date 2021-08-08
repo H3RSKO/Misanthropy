@@ -20,6 +20,7 @@
   <li>Redux-Thunks</li>
   <li>Material UI</li>
   <li>Babel</li>
+  <li>ckeditor5</li>
 </ul>
 
 <h4>Back End:</h4>
@@ -53,8 +54,8 @@
 [🛸] Create DB and DB Tables for Users, Threads and Posts<br>
 [🛸] Set up API routes for getting all users, all posts, and all threads<br>
 [🛸] Set up User API routes to add new users<br>
-[ ] Set up Thread API routes to create new threads<br>
-[ ] Set up Post API routes to create new posts<br>
+[🛸] Set up Thread API routes to create new threads<br>
+[🛸] Set up Post API routes to create new posts<br>
 [🛸] Set up User password cryptography and authentication functionality<br>
 [🛸] Set up DB seed file to quickly automated DB entries for testing<br>
 [🛸] Set up Google Cloud bucket to store Forum images<br>
@@ -70,7 +71,7 @@
 [🚀] Add Redux and setup global store<br>
 [🚀] Create User store<br>
 [🚀] Create Thread store<br>
-[ ] Create Post store<br>
+[🚀] Create Post store<br>
 [🚀] Add Redux-Thunks<br>
 [🚀] Add User Thunks to get all users and create new users<br>
 [🚀] Add Thread Thunks to get all threads and create new threads<br>
@@ -98,4 +99,12 @@
 	<img width="1000" src="./public/images/login.gif">
 	<br>
 </h1>
+</div>
+
+<div>
+<h3>To Do<h3>
+<h5>* After posting new thread, automatically redirect to thread</h5>
+<h5>* Add poster info to posts</h5>
+<h5>* If you are thread's author, add edit thread button</h5>
+<h5>* If you are post's author, add edit post button</h5>
 </div>
