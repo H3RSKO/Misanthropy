@@ -9,9 +9,9 @@ const threadStyle = {
     // opacity: 0.5,
   },
   postComtainer: {
-    margin: '0.5em',
-    Wodth: '100%',
-    display: 'grid'
+    // margin: '0.5em',
+    // width: '100%',
+    // display: 'grid'
   }
 }
 

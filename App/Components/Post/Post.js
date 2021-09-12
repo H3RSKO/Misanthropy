@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import DOMPurify from "dompurify";
 import PostHandler from "../PostHandler/PostHandler";
+import dayjs from "dayjs";
 
 const createMarkup = (html) => {
   html = html.replace(/<a /g, '<a style="color: green;"');
@@ -20,7 +21,7 @@ const createMarkup = (html) => {
 };
 
 const Post = ({ p, classes}) => {
-  console.log({ p });
+  // console.log({ p });
   return (
     <Card key={p.id} style={{display: "grid"}}>
       <Grid
@@ -28,17 +29,20 @@ const Post = ({ p, classes}) => {
         spacing={1}
         // justify="spaceBetween"
         direction="row"
-        className={classes.userInfo}
+
       >
-        <Grid item xs={3}>
+        <Grid className={classes.userInfo} item xs={3}>
           <Grid item xs={12}>
-            <img src={p.user.photo} />
+            <img src={p.user.photo} className={classes.userPhoto}/>
           </Grid>
           <Grid item xs={12}>
             {p.user.userName}
           </Grid>
+          <Grid item xs={12}>
+            Joined {dayjs(p.user.createdAt).format("MM-DD-YYYY")}
+          </Grid>
         </Grid>
-        <Grid container className={classes.postTextContainer}>
+        <Grid item xs={9} className={classes.postTextContainer}>
           <CardContent className={classes.postText}>
             <Typography
               // className={classes.postText}

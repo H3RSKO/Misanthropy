@@ -62,12 +62,6 @@ const Thread = ({
   //   };
   // };
 
-  // finish tie in between post thunks and here
-
-  const TextComponent = ({ threadId, postId }) => (
-    <PostHandler threadId={threadId} postId={postId} />
-  );
-
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs={10}>
@@ -88,20 +82,22 @@ const Thread = ({
           <Box style={{ display: "grid" }}>
             {currentPosts &&
               currentPosts.posts.map((p) => (
-                <div className={classes.postComtainer} key={p.id}>
+                <Card className={classes.postContainer} key={p.id}>
                   <Post p={p} />
                   {replyHandler &&
                     replyHandler.type === "post" &&
                     replyHandler.id === p.id && (
                       <PostHandler threadId={threadId} postId={p.id} />
                     )}
+                  <div style={{display: "grid"}}>
                   <Button
                     onClick={() => setReplyHandler({ type: "post", id: p.id })}
-                    style={{ justifySelf: "flex-end" }}
+                    style={{ justifySelf: "flex-end", fontSize: "0.75rem" }}
                   >
                     Reply to Post
                   </Button>
-                </div>
+                  </div>
+                </Card>
               ))}
           </Box>
           {replyHandler &&
