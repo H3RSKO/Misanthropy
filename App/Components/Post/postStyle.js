@@ -7,11 +7,12 @@ const postStyle = {
 
   },
   userInfo: {
-    background: '#f5f5f5',
+    backgroundColor: 'rgba(0,50,46,0.85)',
+    color: '#00c033',
     maxHeight: '180px',
   },
   userPhoto: {
-    height: '9em'
+    maxHeight: '9em',
   }
 }
 

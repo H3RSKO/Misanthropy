@@ -23,7 +23,6 @@ const createMarkup = (html) => {
 const Post = ({ p, classes}) => {
   // console.log({ p });
   return (
-    <Card key={p.id} style={{display: "grid"}}>
       <Grid
         container
         spacing={1}
@@ -31,7 +30,7 @@ const Post = ({ p, classes}) => {
         direction="row"
 
       >
-        <Grid className={classes.userInfo} item xs={3}>
+        <Grid className={classes.userInfo} item xs={2}>
           <Grid item xs={12}>
             <img src={p.user.photo} className={classes.userPhoto}/>
           </Grid>
@@ -42,7 +41,7 @@ const Post = ({ p, classes}) => {
             Joined {dayjs(p.user.createdAt).format("MM-DD-YYYY")}
           </Grid>
         </Grid>
-        <Grid item xs={9} className={classes.postTextContainer}>
+        <Grid item xs={10} className={classes.postTextContainer}>
           <CardContent className={classes.postText}>
             <Typography
               // className={classes.postText}
@@ -52,8 +51,6 @@ const Post = ({ p, classes}) => {
           </CardContent>
         </Grid>
       </Grid>
-            {/* <PostHandler /> */}
-    </Card>
   );
 };
 

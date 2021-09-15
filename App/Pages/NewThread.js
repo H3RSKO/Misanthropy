@@ -17,7 +17,7 @@ import NewThreadStyles from "../Styling/NewThreadStyle";
 import {createThreads} from "../store/threads"
 import { makePosts } from "../store/posts";
 
-const NewThread = ({ classes, user, createThread }) => {
+const NewThread = ({ classes, user, createThread, history }) => {
   const [postHandler, setPostHandler] = useState({ title: "", text: "", story: false, userId: '' });
 
   useEffect(() => {
@@ -35,8 +35,13 @@ const NewThread = ({ classes, user, createThread }) => {
   };
 
   // submits new thread
-  const threadSubmitter = () => {
-    createThread(postHandler)
+  const threadSubmitter = async () => {
+    try {
+      const data = await createThread(postHandler)
+      history.push(`/threads/${data.thread.id}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

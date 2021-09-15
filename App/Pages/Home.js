@@ -12,7 +12,7 @@ const Home = (props) => {
 
   return (
     <Grid container direction="row" justify="center">
-      <Grid item xs={10} >
+      <Grid item xs={12} s={10}>
         <Box className={classes.borderBox} border={3}>
         <Paper
           elevation={3}

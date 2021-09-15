@@ -81,6 +81,8 @@
 [🚀] Create Navbar<br>
 [🚀] Create Stories/Thread frontend<br>
 [🚀] Create Post frontend<br>
+[🚀] After posting new thread, automatically redirect to thread<br>
+[🚀] Add poster info to posts<br>
 </div>
 <br>
 <br>
@@ -103,8 +105,6 @@
 
 <div>
 <h3>To Do<h3>
-<h5>* After posting new thread, automatically redirect to thread</h5>
-<h5>* Add poster info to posts</h5>
 <h5>* If you are thread's author, add edit thread button</h5>
 <h5>* If you are post's author, add edit post button</h5>
 </div>

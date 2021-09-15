@@ -41,6 +41,7 @@ export const getThreadInfo = (threadId) => async (dispatch) => {
 
 // when posting new thread, need to split off initial text post as first post in thread
 export const createThreads = (thread) => async (dispatch) => {
+  console.log('the thread in createThreads: ', thread)
   try {
     const {data} = await axios.post('/api/threads', thread)
     const postData = await axios.post(`/api/posts/${data.id}`, {text: thread.text, userId: thread.userId, threadId: data.id})
@@ -58,7 +59,7 @@ export default function (state = {threads: []}, action) {
     case GET_ONE_THREAD:
       return {...state, thread: action.thread}
     case ADD_THREAD:
-      return {...state, threads: [...threads, action.thread]}
+      return {...state, threads: [...state.threads, action.thread]}
     default:
       return state
   }

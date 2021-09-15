@@ -64,7 +64,7 @@ const Thread = ({
 
   return (
     <Grid container direction="row" justify="center">
-      <Grid item xs={10}>
+      <Grid item xs={12} m={10}>
         <Paper
           elevation={3}
           square={true}
