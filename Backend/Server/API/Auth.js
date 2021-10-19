@@ -1,9 +1,9 @@
-const router = require('express').Router()
+const router = require("express").Router();
 // const {db} = require('../../Database')
-const {User} = require('../../Database/models')
-const db = require('../../Database')
+const { User } = require("../../Database/models");
+const db = require("../../Database");
 
-module.exports = router
+module.exports = router;
 
 // // see if cookie exists
 // // Doesn't currently do anything
@@ -12,35 +12,29 @@ module.exports = router
 //     console.log('trying to find cookiedb: >> ', db)
 //   }
 // })
-const sessionStore = db.models.Session
+const sessionStore = db.models.Session;
 
-router.get('/me/:cookie', async (req, res) => {
-  console.log(`in Auth api the session ID is ${req.sessionID}`)
+router.get("/me/:cookie", async (req, res) => {
   try {
-  if (req.sessionID) {
-
+    if (req.sessionID) {
       const userCookie = await sessionStore.findOne({
         where: {
-          sid: req.sessionID
-        }
-      })
-     // pulls name from cookie data
-     console.log(`user cookie is: ${userCookie}`)
-      // data is saved as a string to need to pull it manually
-      let userNameFromCookie = userCookie.data.split(":").pop()
-      userNameFromCookie = userNameFromCookie.substring(1, userNameFromCookie.length - 2)
+          sid: req.sessionID,
+        },
+      });
+      // pulls name from cookie data
+      let userNameFromCookie = JSON.parse(userCookie.data).sid;
 
-
-      console.log(`the userName is ${userNameFromCookie}`)
       const user = await User.findOne({
         where: {
-          userName: userNameFromCookie
-        }
-        })
-      res.json(user)
+          userName: userNameFromCookie,
+        },
+      });
+      res.json(user);
     } else {
-      console.log('no cookie')
-      res.status(401).send('No cookie')
+      res.status(401).send("No cookie");
     }
-    } catch(err) {console.log(err)}
-})
+  } catch (err) {
+    console.log(err);
+  }
+});
